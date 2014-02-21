@@ -15,6 +15,7 @@
 
     <build>
         <finalName>${project.artifactId}</finalName>
+        <sourceDirectory>${project.basedir}/src</sourceDirectory>
 
         <plugins>
             <plugin>
@@ -73,8 +74,6 @@
                 </executions>
             </plugin>
         </plugins>
-
-        <sourceDirectory>${project.basedir}/src</sourceDirectory>
     </build>
 
     <dependencies>
@@ -84,20 +83,35 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
+
         <dependency>
             <groupId>nz.ac.waikato.cms.weka</groupId>
             <artifactId>weka-dev</artifactId>
             <version>3.7.5</version>
         </dependency>
+
         <dependency>
             <groupId>javax.media</groupId>
             <artifactId>jmf</artifactId>
             <version>2.1.1e</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-math3</artifactId>
+            <version>3.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.rwl</groupId>
+            <artifactId>jtransforms</artifactId>
+            <version>2.4.0</version>
         </dependency>
     </dependencies>
 </project>
