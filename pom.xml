@@ -15,7 +15,6 @@
 
     <build>
         <finalName>${project.artifactId}</finalName>
-        <sourceDirectory>${project.basedir}/src</sourceDirectory>
 
         <plugins>
             <plugin>
