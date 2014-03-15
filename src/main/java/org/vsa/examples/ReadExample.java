@@ -1,4 +1,4 @@
-package org.vsa;
+package org.vsa.examples;
 
 import it.sardegnaricerche.voiceid.utils.wav.WavFile;
 import it.sardegnaricerche.voiceid.utils.wav.WavFileException;
@@ -9,7 +9,7 @@ public class ReadExample {
 
     public static void main(String[] args) {
         try {
-            // Open the wav file specified as the first argument
+            // Open the wav file
             WavFile wavFile = WavFile.openWavFile(new File("wav/yes.wav"));
 
             // Display information about the wav file

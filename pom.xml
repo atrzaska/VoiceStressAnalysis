@@ -161,5 +161,28 @@
             <systemPath>${project.basedir}/lib/javaxt-core.jar</systemPath>
         </dependency>
 
+        <dependency>
+            <groupId>musicg-1.4.2.0</groupId>
+            <artifactId>musicg-1.4.2.0</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/musicg-1.4.2.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>musicg-graphic-1.3.0.0</groupId>
+            <artifactId>musicg-graphic-1.3.0.0</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/musicg-graphic-1.3.0.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>marf-0.3.0-devel-20070108-fat</groupId>
+            <artifactId>marf-0.3.0-devel-20070108-fat</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/marf-0.3.0-devel-20070108-fat.jar</systemPath>
+        </dependency>
     </dependencies>
 </project>
