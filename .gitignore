@@ -2,6 +2,7 @@
 .settings/
 .project
 .classpath
+unused/
 target/
 # Package Files #
 *.war
