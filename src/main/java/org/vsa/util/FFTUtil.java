@@ -2,7 +2,17 @@ package org.vsa.util;
 
 import edu.emory.mathcs.jtransforms.fft.DoubleFFT_1D;
 
+/**
+ * FFTUtil
+ */
 public class FFTUtil {
+
+    /**
+     * fft_jtransforms
+     * 
+     * @param src
+     * @return 
+     */
     public static double[] fft_jtransforms(double[] src) {
         double[] out = new double[src.length * 2];
 

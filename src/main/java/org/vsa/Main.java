@@ -2,8 +2,16 @@ package org.vsa;
 
 import org.vsa.gui.MainWindow;
 
+/**
+ * Main
+ */
 public class Main {
 
+    /**
+     * main
+     * 
+     * @param args 
+     */
     public static void main(String args[]) {
         System.out.println("start");
         System.out.println("----------------------------------------------------------------------------------");
