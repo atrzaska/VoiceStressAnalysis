@@ -5,9 +5,10 @@ import java.io.IOException;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
-import org.math.plot.Plot2DPanel;
 
+import org.math.plot.Plot2DPanel;
 import org.vsa.Config;
+import org.vsa.audio.AudioProcessor;
 import org.vsa.audio.AudioReader;
 import org.vsa.util.CepstrumUtil;
 import org.vsa.util.MathUtil;
@@ -124,11 +125,17 @@ public final class VoiceStressAnalyser {
         this.hzWindowSize = hzEnd - hzStart + 1;
 
         // read signal
-        signal = audioReader.getChannelSamples(0);
+        double[] mSignal = audioReader.getChannelSamples(0);
 
-        PlotUtil.drawSpectrum(signal, sampleRate);
+        AudioProcessor audioProcessor = new AudioProcessor(mSignal);
+        audioProcessor.normalizeSignal();
+        audioProcessor.removeStartSilence();
+        audioProcessor.removeEndSilence();
+        this.signal = audioProcessor.getProcessedSignal();
+
+//        PlotUtil.drawSpectrum(signal, sampleRate);
         PlotUtil.drawWaveForm(signal, sampleRate);
-        PlotUtil.drawCepstrum(signal, sampleRate, hzStart, hzWindowSize);
+//        PlotUtil.drawCepstrum(signal, sampleRate, hzStart, hzWindowSize);
 
         // apply window function
 //        SoundWindowUtil.applyWindow(signal, SoundWindowUtil.hammingWindow(signal.length));
@@ -139,7 +146,7 @@ public final class VoiceStressAnalyser {
         // calculate F0 for whole signal
 //        double F0_all = calculateFundamentalFrequencyWithCepstrum(signal);
 
-//        this.drawFundamentalFrequencyVector();
+        this.drawFundamentalFrequencyVector();
     }
 
     public double[] createIndexVector(int size) {
@@ -155,29 +162,32 @@ public final class VoiceStressAnalyser {
     public int calulateNumSteps() {
         // calculate number of steps per window
         int stepsPerWindow = (int)Math.ceil(framesPerWindow / framesPerStep);
-        
+
         // calculate number of steps
         int totalNumSteps = (int)Math.floor(numSamples / framesPerStep);
 
         //return value
         return totalNumSteps - stepsPerWindow;
     }
-    
+
     /**
      * getFundamentalFrequencyVector
-     * 
-     * @return 
+     *
+     * @return
      */
     public double[] getFundamentalFrequencyVector() {
         // create F0 vector
         double[] fundamentalFrequencyVector = new double[numSteps];
 
+        int offset = 0;
+        int numSteps = 0;
+
         // get F0 for each window
-        for (int i = 0; i < numSteps; i++) {
+        for (int i = 0; i < numSteps - 4; i++) {
             int start = i * framesPerStep;
             int end = start + framesPerWindow;
             int size = framesPerWindow;
-            
+
             if(end > this.numSamples) {
                 continue;
             }
@@ -187,19 +197,20 @@ public final class VoiceStressAnalyser {
 
             // copy signal part to window
             System.arraycopy(signal, start, window, 0, size);
-            
+
             // apply window function
             SoundWindowUtil.applyWindow(window, SoundWindowUtil.hammingWindow(window.length));
-            
+
             // calculate F0
             double F0 = calculateFundamentalFrequencyWithCepstrum(window);
 
             // save F0 in arr
-            if(F0 == 0) {
-                fundamentalFrequencyVector[i] = fundamentalFrequencyVector[i-1];
-            } else {
-                fundamentalFrequencyVector[i] = F0;
-            }
+            fundamentalFrequencyVector[i] = F0;
+//            if(F0 == 0) {
+//                fundamentalFrequencyVector[i] = fundamentalFrequencyVector[i-1];
+//            } else {
+//                fundamentalFrequencyVector[i] = F0;
+//            }
         }
 
         // return value
@@ -228,10 +239,10 @@ public final class VoiceStressAnalyser {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
-    
+
     /**
      * calculateFundamentalFrequencyWithCepstrum
-     * 
+     *
      * @param signal Signal
      * @return F0
      */
@@ -247,10 +258,10 @@ public final class VoiceStressAnalyser {
 
         // find max value
         double maxVal  = MathUtil.max(voiceWindow);
-        
+
         // find average value
         double avgVal = MathUtil.mean(voiceWindow);
-        
+
         // calculate max/avg ratio
         double maxAvgRatio = maxVal / avgVal;
 

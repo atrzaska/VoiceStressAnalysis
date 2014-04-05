@@ -9,12 +9,6 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.JFrame;
-
-import org.math.plot.Plot2DPanel;
-import org.vsa.util.CepstrumUtil;
-import org.vsa.util.FFTUtil;
-import org.vsa.util.MathUtil;
 
 /**
  * AudioReader

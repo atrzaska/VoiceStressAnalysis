@@ -17,7 +17,7 @@ public class MainWindow extends JFrame {
         initComponents();
 
         try {
-            VoiceStressAnalyser vsa = new VoiceStressAnalyser("wav/nagranie1.wav");
+            VoiceStressAnalyser vsa = new VoiceStressAnalyser("wav/andrzej/nagranie1.wav");
         } catch (IOException | UnsupportedAudioFileException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

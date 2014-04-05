@@ -59,10 +59,10 @@ public class PlotUtil {
      */
     public static void drawSpectrum(double[] signal, int sampleRate) throws IllegalArgumentException, IOException {
         // calculate range
-        int range = 20000 * signal.length / sampleRate;
+        int range = (int)(20000.0 * (double)signal.length / (double)sampleRate);
 
         // create x array
-        double[] x = new double[range];
+        double[] x = new double[(int)range];
 
         // populate x array
         for (int i = 0; i < x.length; i++) {

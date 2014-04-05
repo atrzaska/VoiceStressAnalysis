@@ -109,7 +109,7 @@ public class AudioProcessor {
         if(endIndex == signal.length - 1) {
             return signal;
         } else {
-            int cutSignalLengh = signal.length - endIndex;
+            int cutSignalLengh = endIndex + 1;
             double[] cutSignal = new double[cutSignalLengh];
 
             System.arraycopy(signal, 0, cutSignal, 0, cutSignalLengh);
