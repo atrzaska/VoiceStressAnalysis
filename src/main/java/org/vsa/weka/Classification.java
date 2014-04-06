@@ -99,4 +99,12 @@ public class Classification {
     public void classifyFromVector(){
         //to do
     }
+    
+    public void classifySingleInstance(){
+        
+    }
+    
+    public void classifyInstanceList(){
+        
+    }
 }
