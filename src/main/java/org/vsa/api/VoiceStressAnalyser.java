@@ -82,6 +82,7 @@ public final class VoiceStressAnalyser {
 
     /**
      * Default constructor
+     * 
      * @param file
      * @throws IOException
      * @throws javax.sound.sampled.UnsupportedAudioFileException
