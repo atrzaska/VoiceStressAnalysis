@@ -23,9 +23,9 @@ public class InterrogationList {
         List<String> folderNames = FileUtil.getFolderNames(wavPath);
 
         // get interrogations
-        for (String folder : folderNames) {
+        for (String name : folderNames) {
             // create new Interrogation
-            Interrogation interrogation = new Interrogation(folder);
+            Interrogation interrogation = new Interrogation(name);
 
             // add it to the list
             interrogations.add(interrogation);

@@ -1,7 +1,9 @@
 package org.vsa.util;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.apache.commons.io.FilenameUtils;
 
@@ -9,6 +11,17 @@ import org.apache.commons.io.FilenameUtils;
  * FileUtil
  */
 public class FileUtil {
+
+    /**
+     * generateArffFileName
+     * 
+     * @param name
+     * @return 
+     */
+    public static String generateArffFileName(String name) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        return name + "-" + simpleDateFormat.format(new Date()) + ".arff";
+    }
 
     /**
      * listFilesForFolder
@@ -45,24 +58,32 @@ public class FileUtil {
      */
     public static List<String> getWavFiles(String folderPath) {
         // create output array
-        List<String> files = new ArrayList<>();
+        List<String> wavFiles = new ArrayList<>();
 
         // create file object
         File folder = new File(folderPath);
 
-        // iterate folder files
-        for (final File file : folder.listFiles()) {
+        // get files from folder
+        File[] allFiles = folder.listFiles();
+
+        // check for nulls
+        if(allFiles == null) {
+            return wavFiles;
+        }
+
+        // iterate over files
+        for (File file : allFiles) {
             // get file extension
             String fileExtension = FilenameUtils.getExtension(file.getAbsolutePath());
 
-            // check if it's a file
+            // check if it's a wav file
             if(fileExtension.equalsIgnoreCase("wav")) {
-                files.add(file.getAbsolutePath());
+                wavFiles.add(file.getAbsolutePath());
             }
         }
 
         // return list
-        return files;
+        return wavFiles;
         
     }
     /**

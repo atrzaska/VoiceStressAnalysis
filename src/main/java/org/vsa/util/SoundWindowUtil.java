@@ -16,6 +16,17 @@ public class SoundWindowUtil {
             signal[i] = signal[i]* window[i];
         }
     }
+    
+    /**
+     * applyHammingWindow
+     * 
+     * @param signal 
+     */
+    public static void applyHammingWindow(double[] signal) {
+        double[] window = hammingWindow(signal.length);
+        
+        applyWindow(signal, window);
+    }
 
     /**
      * hamming window

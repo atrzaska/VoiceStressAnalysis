@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 
-package org.vsa.weka;
+package org.vsa;
 
+import org.vsa.weka.Classification;
+import org.vsa.weka.DataSet;
+import org.vsa.weka.Evaluate;
 import weka.classifiers.trees.J48;
 import weka.core.Instances;
 

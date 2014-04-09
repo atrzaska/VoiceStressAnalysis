@@ -64,4 +64,9 @@ public class Config {
      * silenceThreshold
      */
     public static final double silenceThreshold = 0.05;
+    
+    /**
+     * testFile
+     */
+    public static final String testFile = "wav/andrzej/nie2.wav";
 }

@@ -108,14 +108,7 @@
 
     <dependencies>
 
-        <!--
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-        </dependency>
-        -->
-
+        <!-- used for unit tests -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -123,94 +116,138 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>nz.ac.waikato.cms.weka</groupId>
-            <artifactId>weka-dev</artifactId>
-            <version>3.7.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.media</groupId>
-            <artifactId>jmf</artifactId>
-            <version>2.1.1e</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-math3</artifactId>
-            <version>3.2</version>
-        </dependency>
-
+        <!-- fft routine -->
         <dependency>
             <groupId>com.github.rwl</groupId>
             <artifactId>jtransforms</artifactId>
             <version>2.4.0</version>
         </dependency>
 
+        <!-- used for machine learning -->
         <dependency>
-            <groupId>org.netbeans.external</groupId>
-            <artifactId>AbsoluteLayout</artifactId>
-            <version>RELEASE74</version>
+            <groupId>nz.ac.waikato.cms.weka</groupId>
+            <artifactId>weka-dev</artifactId>
+            <version>3.7.5</version>
         </dependency>
 
+        <!-- used for statistical calculations -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-math3</artifactId>
+            <version>3.2</version>
+        </dependency>
+
+        <!-- used for getting file extension -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+
+        <!-- commons-lang -->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+        
+        <!-- unsed for converting doubles list to array -->
+         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>r09</version>
+        </dependency>
+
+        <!-- mig layout -->
         <dependency>
             <groupId>com.miglayout</groupId>
             <artifactId>miglayout</artifactId>
             <version>3.7.4</version>
         </dependency>
 
+        <!-- AbsoluteLayout -->
         <dependency>
-            <groupId>org.jzy3d</groupId>
-            <artifactId>jzy3d-api</artifactId>
-            <version>0.9.1</version>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>RELEASE74</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.googlecode.efficient-java-matrix-library</groupId>
-            <artifactId>ejml</artifactId>
-            <version>0.24</version>
-        </dependency>
-
+        <!-- LOCAL LIB used for creating plots -->
         <dependency>
             <groupId>jmathplot</groupId>
             <artifactId>jmathplot</artifactId>
             <version>1.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>jmathio</groupId>
-            <artifactId>jmathio</artifactId>
-            <version>1.0</version>
-        </dependency>
+        <!-- UNUSED used for logging -->
+        <!-- <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency> -->
 
-        <dependency>
-            <groupId>mp3plugin</groupId>
-            <artifactId>mp3plugin</artifactId>
-            <version>1.0</version>
-        </dependency>
+        <!-- UNUSED used for drawing plots with opengl -->
+        <!-- <dependency>
+            <groupId>org.jzy3d</groupId>
+            <artifactId>jzy3d-api</artifactId>
+            <version>0.9.1</version>
+        </dependency> -->
 
-        <dependency>
-            <groupId>javaxt-core</groupId>
-            <artifactId>javaxt-core</artifactId>
-            <version>1.6.1</version>
-        </dependency>
+        <!-- UNUSED matrix library -->
+        <!-- <dependency>
+            <groupId>com.googlecode.efficient-java-matrix-library</groupId>
+            <artifactId>ejml</artifactId>
+            <version>0.24</version>
+        </dependency> -->
 
-        <dependency>
+        <!-- UNUSED sound processing lib -->
+        <!-- <dependency>
             <groupId>musicg</groupId>
             <artifactId>musicg</artifactId>
             <version>1.4.2.0</version>
-        </dependency>
+        </dependency>-->
 
-        <dependency>
+        <!-- UNUSED sound processing lib -->
+        <!-- <dependency>
             <groupId>musicg-graphic</groupId>
             <artifactId>musicg-graphic</artifactId>
             <version>1.3.0.0</version>
-        </dependency>
+        </dependency> -->
 
-        <dependency>
+        <!-- UNUSED java media framework -->
+        <!-- <dependency>
+            <groupId>javax.media</groupId>
+            <artifactId>jmf</artifactId>
+            <version>2.1.1e</version>
+        </dependency> -->
+
+        <!-- UNUSED javaxt-core -->
+        <!-- <dependency>
+            <groupId>javaxt-core</groupId>
+            <artifactId>javaxt-core</artifactId>
+            <version>1.6.1</version>
+        </dependency> -->
+
+        <!-- UNUSED LOCAL LIB audio recognition lib -->
+        <!-- <dependency>
             <groupId>marf</groupId>
             <artifactId>marf</artifactId>
             <version>0.3.0-devel-20070108-fat</version>
-        </dependency>
+        </dependency> -->
+
+        <!-- UNUSED LOCAL LIB jmf mp3 plugin -->
+        <!-- <dependency>
+            <groupId>mp3plugin</groupId>
+            <artifactId>mp3plugin</artifactId>
+            <version>1.0</version>
+        </dependency> -->
+
+        <!-- UNUSED LOCAL LIB -->
+        <!-- <dependency>
+            <groupId>jmathio</groupId>
+            <artifactId>jmathio</artifactId>
+            <version>1.0</version>
+        </dependency> -->
+
     </dependencies>
 </project>

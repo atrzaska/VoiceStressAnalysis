@@ -1,24 +1,27 @@
 package org.vsa.api;
 
+import com.google.common.primitives.Doubles;
 import java.io.File;
 import java.io.IOException;
-
+import java.util.ArrayList;
+import java.util.List;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.JFrame;
-
-import org.math.plot.Plot2DPanel;
 import org.vsa.Config;
+import org.vsa.audio.AudioException;
 import org.vsa.audio.AudioProcessor;
 import org.vsa.audio.AudioReader;
 import org.vsa.util.CepstrumUtil;
 import org.vsa.util.MathUtil;
-import org.vsa.util.PlotUtil;
 import org.vsa.util.SoundWindowUtil;
 
 /**
  * VoiceStressAnalyser
  */
 public final class VoiceStressAnalyser {
+    /**
+     * audioReader
+     */
+    private final AudioReader audioReader;
 
     /**
      * sampleRate
@@ -56,11 +59,6 @@ public final class VoiceStressAnalyser {
     private final int numSteps;
 
     /**
-     * soundWindow
-     */
-    private final double[] soundWindow;
-
-    /**
      * hzStart
      */
     private final int hzStart;
@@ -86,11 +84,17 @@ public final class VoiceStressAnalyser {
      * @param file
      * @throws IOException
      * @throws javax.sound.sampled.UnsupportedAudioFileException
+     * @throws AudioException
      */
-    public VoiceStressAnalyser(String file) throws IOException, UnsupportedAudioFileException {
+    public VoiceStressAnalyser(String file) throws IOException, UnsupportedAudioFileException, AudioException {
         // read wav file
-        AudioReader audioReader = new AudioReader(new File(file));
+        audioReader = new AudioReader(new File(file));
 
+        // check number of channels
+        if(audioReader.numChannels() != Config.allowedNumChannels) {
+            throw new AudioException("Mono sound only.");
+        }
+        
         // set sample rate
         this.sampleRate = audioReader.getSampleRate();
 
@@ -98,7 +102,7 @@ public final class VoiceStressAnalyser {
         this.sampleTime = 1.0 / sampleRate;
 
         // read number of frames
-        this.numSamples = audioReader.numSamples();
+        this.numSamples = audioReader.numSamplesPerChannel();
 
         // calculate number of frames per window
         this.framesPerWindow = (int)Math.floor(Config.windowSize * sampleRate);
@@ -110,11 +114,7 @@ public final class VoiceStressAnalyser {
         this.framesPerStep = (int)Math.floor(Config.stepSize * sampleRate);
 
         // calculate number of steps
-//        this.numSteps = (int)Math.floor(numSamples / framesPerStep);
-        this.numSteps = this.calulateNumSteps();
-
-        // create sound window
-        this.soundWindow = SoundWindowUtil.hammingWindow(framesPerWindow);
+        this.numSteps = (int)Math.floor(numSamples / framesPerStep);
 
         // calculate start duration
         this.hzStart = (int)Math.floor(sampleRate / Config.startFrequency);
@@ -128,47 +128,13 @@ public final class VoiceStressAnalyser {
         // read signal
         double[] mSignal = audioReader.getChannelSamples(0);
 
+        // process sound
         AudioProcessor audioProcessor = new AudioProcessor(mSignal);
         audioProcessor.normalizeSignal();
         audioProcessor.removeStartSilence();
         audioProcessor.removeEndSilence();
+//        audioProcessor.reduceNoise();
         this.signal = audioProcessor.getProcessedSignal();
-
-//        PlotUtil.drawSpectrum(signal, sampleRate);
-        PlotUtil.drawWaveForm(signal, sampleRate);
-//        PlotUtil.drawCepstrum(signal, sampleRate, hzStart, hzWindowSize);
-
-        // apply window function
-//        SoundWindowUtil.applyWindow(signal, SoundWindowUtil.hammingWindow(signal.length));
-
-//        audioReader.drawWaveForm();
-//        audioReader.drawSpectrum();
-
-        // calculate F0 for whole signal
-//        double F0_all = calculateFundamentalFrequencyWithCepstrum(signal);
-
-        this.drawFundamentalFrequencyVector();
-    }
-
-    public double[] createIndexVector(int size) {
-        double[] indexes = new double[size];
-
-        for (int i = 0; i < size; i++) {
-            indexes[i] = i;
-        }
-
-        return indexes;
-    }
-
-    public int calulateNumSteps() {
-        // calculate number of steps per window
-        int stepsPerWindow = (int)Math.ceil(framesPerWindow / framesPerStep);
-
-        // calculate number of steps
-        int totalNumSteps = (int)Math.floor(numSamples / framesPerStep);
-
-        //return value
-        return totalNumSteps - stepsPerWindow;
     }
 
     /**
@@ -177,20 +143,17 @@ public final class VoiceStressAnalyser {
      * @return
      */
     public double[] getFundamentalFrequencyVector() {
-        // create F0 vector
-        double[] fundamentalFrequencyVector = new double[numSteps];
-
-        int offset = 0;
-        int numSteps = 0;
+        // create F0 array
+        List<Double> output = new ArrayList<>();
 
         // get F0 for each window
-        for (int i = 0; i < numSteps - 4; i++) {
+        for (int i = 0; i < numSteps; i++) {
             int start = i * framesPerStep;
             int end = start + framesPerWindow;
             int size = framesPerWindow;
 
-            if(end > this.numSamples) {
-                continue;
+            if(end >= signal.length) {
+                break;
             }
 
             // create window
@@ -200,45 +163,19 @@ public final class VoiceStressAnalyser {
             System.arraycopy(signal, start, window, 0, size);
 
             // apply window function
-            SoundWindowUtil.applyWindow(window, SoundWindowUtil.hammingWindow(window.length));
+            SoundWindowUtil.applyHammingWindow(window);
 
             // calculate F0
             double F0 = calculateFundamentalFrequencyWithCepstrum(window);
 
             // save F0 in arr
-            fundamentalFrequencyVector[i] = F0;
-//            if(F0 == 0) {
-//                fundamentalFrequencyVector[i] = fundamentalFrequencyVector[i-1];
-//            } else {
-//                fundamentalFrequencyVector[i] = F0;
-//            }
+            if(F0 > 0) {
+                output.add(F0);
+            }
         }
 
         // return value
-        return fundamentalFrequencyVector;
-    }
-
-    /**
-     * drawFundamentalFrequencyVector
-     */
-    public void drawFundamentalFrequencyVector() {
-        double[] y = this.getFundamentalFrequencyVector();
-        double[] x = this.createIndexVector(y.length);
-
-        // plot
-        Plot2DPanel plot = new Plot2DPanel();
-        plot.setLegendOrientation("EAST");
-        plot.addLegend("Ton Podstawowy");
-        plot.addLinePlot("Ton Podstawowy", x, y);
-        plot.setAxisLabel(0, "Nr okna");
-        plot.setAxisLabel(1, "Częstotliwość [Hz]");
-
-        // frame
-        JFrame frame = new JFrame("Ton Podstawowy");
-        frame.setSize(600, 600);
-        frame.setContentPane(plot);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+        return Doubles.toArray(output);
     }
 
     /**
@@ -279,5 +216,27 @@ public final class VoiceStressAnalyser {
 
         // return value
         return F0;
+    }
+
+    /**
+     * getTotalFundamentalFrequency
+     * 
+     * @return 
+     */
+    public double getTotalFundamentalFrequency() {
+        // create temp array
+        double[] tmp = new double[signal.length];
+        
+        // copy signal
+        System.arraycopy(tmp, 0, signal, 0, signal.length);
+
+        // apply hamming window
+        SoundWindowUtil.applyHammingWindow(tmp);
+
+        // get f0
+        double f0 = this.calculateFundamentalFrequencyWithCepstrum(tmp);
+
+        // return value
+        return f0;
     }
 }

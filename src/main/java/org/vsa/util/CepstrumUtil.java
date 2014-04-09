@@ -1,7 +1,6 @@
 package org.vsa.util;
 
 import edu.emory.mathcs.jtransforms.fft.DoubleFFT_1D;
-import edu.emory.mathcs.jtransforms.fft.FloatFFT_1D;
 
 /**
  * CepstrumUtil
@@ -74,29 +73,6 @@ public class CepstrumUtil {
 
             // save result
             output[i] = pow1;
-        }
-
-        return output;
-    }
-
-    /**
-     * powerCepstrum
-     * @param signal
-     * @return
-     */
-    public static float[] powerCepstrum(float[] signal) {
-        int length = signal.length;
-        float[] tmp = new float[2*length];
-
-        System.arraycopy(signal, 0, tmp, 0, length);
-
-        FloatFFT_1D fft1 = new FloatFFT_1D(length);
-        fft1.realForwardFull(tmp);
-
-        float[] output = new float[length];
-
-        for (int i = 0; i < output.length; i++) {
-            output[i] = tmp[2*i]*tmp[2*i]+tmp[2*i+1]*tmp[2*i+1];
         }
 
         return output;

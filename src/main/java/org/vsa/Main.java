@@ -1,6 +1,11 @@
 package org.vsa;
 
-import org.vsa.gui.MainWindow;
+import java.io.IOException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import org.vsa.api.VoiceStressAnalyser;
+import org.vsa.api.VsaSystem;
+import org.vsa.audio.AudioException;
+import org.vsa.util.PlotUtil;
 
 /**
  * Main
@@ -12,42 +17,23 @@ public class Main {
      * 
      * @param args 
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws Exception {
         System.out.println("start");
         System.out.println("----------------------------------------------------------------------------------");
 
-        // create gui
-        System.out.println("tworze gui");
+//        // create voice stress analyser for test file
+//        VoiceStressAnalyser vsa = new VoiceStressAnalyser("wav/andrzej/nagranie2.wav");
+//
+//        // draw f0 vector
+//        PlotUtil.drawFundamentalFrequencyVector(vsa.getFundamentalFrequencyVector());
+
+        // create vsa system
+        VsaSystem vsaSystem = new VsaSystem();
+            
+        // generate arff files
+        vsaSystem.generateArffFiles();
+
+        System.out.println("koniec");
         System.out.println("----------------------------------------------------------------------------------");
-
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-* For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-*/
-
-        try {
-            javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-// javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-
-// for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-// if ("Nimbus".equals(info.getName())) {
-// javax.swing.UIManager.setLookAndFeel(info.getClassName());
-// break;
-// }
-// }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-// java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new MainWindow().setVisible(true);
-            }
-        });
     }
-
 }

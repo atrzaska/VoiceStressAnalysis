@@ -43,6 +43,9 @@ public class AudioProcessor {
         normalizeSignal(this.signal);
     }
 
+    public void reduceNoise() {
+        reduceNoise(this.signal);
+    }
     /**
      * removeStartSilence
      * 
@@ -132,6 +135,21 @@ public class AudioProcessor {
         // multiply signal by factor
         for (int i = 0; i < signal.length; i++) {
             signal[i] = signal[i] * factor;
+        }
+    }
+
+    public static void reduceNoise(double[] signal) {
+        // get silence threshold
+        double threshold = Config.silenceThreshold;
+        
+        // multiply signal by factor
+        for (int i = 0; i < signal.length; i++) {
+            double val = signal[i];
+            double absVal = Math.abs(val);
+            
+            if(absVal < threshold) {
+                signal[i] = 0;
+            }
         }
     }
 

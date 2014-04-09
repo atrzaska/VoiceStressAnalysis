@@ -111,11 +111,8 @@ public class PlotUtil {
         // copy signal
         System.arraycopy(signal, 0, tmpSignal, 0, signal.length);
         
-        // create hamminw window
-        double[] window = SoundWindowUtil.hammingWindow(tmpSignal.length);
-        
         // apply window on temp signal
-        SoundWindowUtil.applyWindow(tmpSignal, window);
+        SoundWindowUtil.applyHammingWindow(tmpSignal);
 
         // calculate power cepstrum
         double[] powCeps = CepstrumUtil.powerCepstrum(signal);
@@ -142,6 +139,36 @@ public class PlotUtil {
 
         // frame
         JFrame frame = new JFrame("Cepstrum");
+        frame.setSize(600, 600);
+        frame.setContentPane(plot);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+
+    /**
+     * drawFundamentalFrequencyVector
+     * 
+     * @param fundamentalFrequencyVector
+     */
+    public static void drawFundamentalFrequencyVector(double[] fundamentalFrequencyVector) {
+        double[] y = fundamentalFrequencyVector;
+        double[] x = new double[y.length];
+
+        // populate x axis values
+        for (int i = 0; i < x.length; i++) {
+            x[i] = i;
+        }
+
+        // plot
+        Plot2DPanel plot = new Plot2DPanel();
+        plot.setLegendOrientation("EAST");
+        plot.addLegend("Ton Podstawowy");
+        plot.addLinePlot("Ton Podstawowy", x, y);
+        plot.setAxisLabel(0, "Nr okna");
+        plot.setAxisLabel(1, "Częstotliwość [Hz]");
+
+        // frame
+        JFrame frame = new JFrame("Ton Podstawowy");
         frame.setSize(600, 600);
         frame.setContentPane(plot);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
