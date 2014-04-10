@@ -113,7 +113,7 @@ public class MathUtil {
      */
     public static double lowQuantile(double[] arr) {
         DescriptiveStatistics ds = new DescriptiveStatistics(arr);
-        return ds.getPercentile(0.25);
+        return ds.getPercentile(25);
     }
 
     /**
@@ -124,7 +124,7 @@ public class MathUtil {
      */
     public static double highQuantile(double[] arr) {
         DescriptiveStatistics ds = new DescriptiveStatistics(arr);
-        return ds.getPercentile(0.75);
+        return ds.getPercentile(75);
     }
 
     /**
@@ -135,7 +135,7 @@ public class MathUtil {
      */
     public static double iqr(double[] arr) {
         DescriptiveStatistics ds = new DescriptiveStatistics(arr);
-        return ds.getPercentile(0.75) - ds.getPercentile(0.25);
+        return ds.getPercentile(75) - ds.getPercentile(25);
     }
 
     /**

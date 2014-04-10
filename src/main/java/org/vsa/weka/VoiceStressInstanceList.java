@@ -87,7 +87,7 @@ public class VoiceStressInstanceList {
         Attribute a7 = new Attribute("iqr");
         Attribute a8 = new Attribute("kurtosis");
         Attribute a9 = new Attribute("f0total");
-        Attribute classAttr = new Attribute("stressed", classAttributeValues);
+        Attribute classAttr = new Attribute("class", classAttributeValues);
 
         // create attributes list
         ArrayList<Attribute> attributes = new ArrayList<>();

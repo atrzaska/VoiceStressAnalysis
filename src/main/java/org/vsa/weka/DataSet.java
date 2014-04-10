@@ -60,7 +60,7 @@ public class DataSet {
         attributes.add(new Attribute("kurtosis"));
         attributes.add(new Attribute("kurtosis"));
         attributes.add(new Attribute("f0total"));
-        attributes.add(new Attribute("stressed"));
+        attributes.add(new Attribute("class"));
         
         // create instances array
         Instances instances = new Instances("voice",  attributes, 0);

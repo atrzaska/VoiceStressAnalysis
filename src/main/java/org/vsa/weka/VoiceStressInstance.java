@@ -265,13 +265,7 @@ public class VoiceStressInstance {
         instance.setValue(6, iqr);
         instance.setValue(7, kurtosis);
         instance.setValue(8, totalF0);
-
-        // set class
-        if(this.isStressed()) {
-            instance.setValue(9, "stressed");
-        } else {
-            instance.setValue(9, "unstressed");
-        }
+        instance.setValue(9, stressed ? "stressed" : "unstressed");
 
         // return instance
         return instance;
@@ -293,6 +287,9 @@ public class VoiceStressInstance {
         // get f0 vector
         double[] f0vector = voiceStressAnalyser.getFundamentalFrequencyVector();
 
+        // check if stressed
+        boolean stressed = !(path.contains("unstressed"));
+
         // get f0 total
         double f0total = voiceStressAnalyser.getTotalFundamentalFrequency();
         
@@ -300,12 +297,14 @@ public class VoiceStressInstance {
         VoiceStressInstance instance = new VoiceStressInstance();
         instance.setMean(MathUtil.mean(f0vector));
         instance.setMin(MathUtil.min(f0vector));
+        instance.setMax(MathUtil.max(f0vector));
         instance.setStd(MathUtil.std(f0vector));
         instance.setLowQuantile(MathUtil.lowQuantile(f0vector));
         instance.setHighQuantile(MathUtil.highQuantile(f0vector));
         instance.setIqr(MathUtil.iqr(f0vector));
         instance.setKurtosis(MathUtil.kurtosis(f0vector));
         instance.setTotalF0(f0total);
+        instance.setStressed(stressed);
 
         // return instance
         return instance;

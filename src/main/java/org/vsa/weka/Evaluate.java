@@ -24,7 +24,7 @@ public class Evaluate {
     public void crossValidation(Classifier classifire,Instances data, int folds ) 
             throws Exception{
         Evaluation eval = new Evaluation(data);
-        eval.crossValidateModel(classifire, data, folds, new Random(1));
+        eval.crossValidateModel(classifire, data, folds, new Random());
         System.out.println(eval.toSummaryString());
     }
     
