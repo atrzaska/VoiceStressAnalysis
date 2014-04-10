@@ -5,8 +5,6 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import org.vsa.Config;
 import org.vsa.audio.AudioException;
 import org.vsa.util.FileUtil;
-import org.vsa.weka.VoiceStressInstanceList;
-import weka.core.Instances;
 
 /**
  * VsaSystem
@@ -14,7 +12,7 @@ import weka.core.Instances;
 public class VsaSystem {
 
     /**
-     * interrogationList
+     * interrogations
      */
     private final InterrogationList interrogationList;
     
@@ -25,24 +23,14 @@ public class VsaSystem {
         // get wav folder path
         String wavPath = Config.wavPath;
 
+        // init list
         interrogationList = new InterrogationList(wavPath);
-
-//        PlotUtil.drawSpectrum(signal, sampleRate);
-//        PlotUtil.drawWaveForm(signal, sampleRate);
-//        PlotUtil.drawCepstrum(signal, sampleRate, hzStart, hzWindowSize);
-        // apply window function
-//        SoundWindowUtil.applyWindow(signal, SoundWindowUtil.hammingWindow(signal.length));
-//        audioReader.drawWaveForm();
-//        audioReader.drawSpectrum();
-        // calculate F0 for whole signal
-//        double F0_all = calculateFundamentalFrequencyWithCepstrum(signal);
-//        this.drawFundamentalFrequencyVector();
     }
 
     /**
      * getInterrogationList
      * 
-     * @return the interrogationList
+     * @return the interrogations
      */
     public InterrogationList getInterrogationList() {
         return interrogationList;
@@ -56,23 +44,14 @@ public class VsaSystem {
      * @throws org.vsa.audio.AudioException
      */
     public void generateArffFiles() throws IOException, UnsupportedAudioFileException, AudioException {
-
         // iterate interrogations
-        for (int i = 0; i < interrogationList.numInterrogations(); i++) {
-            // get interrogation
-            Interrogation interrogation = interrogationList.getInterrogation(i);
-
-            // process files
-            VoiceStressInstanceList voiceStressInstanceList = interrogation.processFiles();
-
-            // convert to weka instances
-            Instances instances = voiceStressInstanceList.toWekaInstances();
+        for(Interrogation interrogation : interrogationList.getInterrogations()) {
 
             // generate output path
-            String outputPath = Config.outputPath + FileUtil.generateArffFileName(voiceStressInstanceList.getName());
+            String outputPath = Config.outputPath + FileUtil.generateArffFileName(interrogation.getName());
 
-            // write instances to arff file
-            voiceStressInstanceList.toArffFile(outputPath);
+            // save arff
+            interrogation.generateArff(outputPath);
         }
     }
 }

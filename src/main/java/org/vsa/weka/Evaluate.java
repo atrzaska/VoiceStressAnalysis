@@ -1,38 +1,54 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package org.vsa.weka;
 
 import java.util.Random;
 import weka.classifiers.Classifier;
 import weka.classifiers.Evaluation;
-import weka.core.Instance;
 import weka.core.Instances;
 
 /**
- *
- * @author mejsl_000
+ * Evaluate
  */
 public class Evaluate {
+    
+    /**
+     * crossValidation
+     * 
+     * @param classifier
+     * @param instances
+     * @param folds
+     * @return 
+     * @throws Exception 
+     */
+    public Evaluation crossValidation(Classifier classifier, Instances instances, int folds) throws Exception {
+        
+        // create evaluation
+        Evaluation evaluation = new Evaluation(instances);
 
-    public Evaluate() {
+        // cross validate model
+        evaluation.crossValidateModel(classifier, instances, folds, new Random());
+
+        // return
+        return evaluation;
     }
     
-    public void crossValidation(Classifier classifire,Instances data, int folds ) 
-            throws Exception{
-        Evaluation eval = new Evaluation(data);
-        eval.crossValidateModel(classifire, data, folds, new Random());
-        System.out.println(eval.toSummaryString());
+    /**
+     * trainTestSet
+     * 
+     * @param classifier
+     * @param train
+     * @param test
+     * @return 
+     * @throws Exception 
+     */
+    public Evaluation trainTestSet(Classifier classifier, Instances train, Instances test) throws Exception {
+        
+        // create evaluation
+        Evaluation evaluation = new Evaluation(train);
+
+        // evaluate model
+        evaluation.evaluateModel(classifier, test);
+
+        // return
+        return evaluation;
     }
-    
-    public void trainTestSet(Classifier classifier, Instances train, Instances test) 
-            throws Exception{
-        Evaluation eval = new Evaluation(train);
-        eval.evaluateModel(classifier, test);
-        System.out.println(eval.toSummaryString());
-    }
-    
 }

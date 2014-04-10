@@ -1,6 +1,5 @@
 package org.vsa.api;
 
-import com.google.common.primitives.Doubles;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,6 +9,7 @@ import org.vsa.Config;
 import org.vsa.audio.AudioException;
 import org.vsa.audio.AudioProcessor;
 import org.vsa.audio.AudioReader;
+import org.vsa.util.ArrayUtil;
 import org.vsa.util.CepstrumUtil;
 import org.vsa.util.MathUtil;
 import org.vsa.util.SoundWindowUtil;
@@ -175,7 +175,7 @@ public final class VoiceStressAnalyser {
         }
 
         // return value
-        return Doubles.toArray(output);
+        return ArrayUtil.toPrimitiveArray(output);
     }
 
     /**

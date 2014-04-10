@@ -22,7 +22,7 @@ public class Config {
      * 
      * 40ms
      */
-    public static final double windowSize = 0.04;
+    public static final double windowSize = 0.1;
     
     /**
      * stepSize
@@ -48,7 +48,7 @@ public class Config {
     /**
      * threshold
      */
-    public static final double cepstrumThreshold = 10.0;
+    public static final double cepstrumThreshold = 15.0;
     
     /**
      * wavPath

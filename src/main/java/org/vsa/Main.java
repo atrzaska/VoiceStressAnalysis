@@ -1,11 +1,8 @@
 package org.vsa;
 
-import java.io.IOException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import org.vsa.api.VoiceStressAnalyser;
-import org.vsa.api.VsaSystem;
-import org.vsa.audio.AudioException;
-import org.vsa.util.PlotUtil;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.vsa.gui.MainWindow;
 
 /**
  * Main
@@ -13,27 +10,37 @@ import org.vsa.util.PlotUtil;
 public class Main {
 
     /**
+     * logger
+     */
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
+
+    /**
      * main
      * 
      * @param args 
      */
-    public static void main(String args[]) throws Exception {
-        System.out.println("start");
-        System.out.println("----------------------------------------------------------------------------------");
+    public static void main(String[] args) {
+        // log
+        logger.log(Level.INFO, "start");
+        
+        // log
+        logger.log(Level.INFO, "tworze gui");
 
-//        // create voice stress analyser for test file
-//        VoiceStressAnalyser vsa = new VoiceStressAnalyser("wav/andrzej/nagranie2.wav");
-//
-//        // draw f0 vector
-//        PlotUtil.drawFundamentalFrequencyVector(vsa.getFundamentalFrequencyVector());
+        // set look and feel
+        try {
+            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+        }
 
-        // create vsa system
-        VsaSystem vsaSystem = new VsaSystem();
-            
-        // generate arff files
-        vsaSystem.generateArffFiles();
+        // display form
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new MainWindow().setVisible(true);
+            }
+        });
 
-        System.out.println("koniec");
-        System.out.println("----------------------------------------------------------------------------------");
+        // log
+        logger.log(Level.INFO, "koniec");
     }
 }

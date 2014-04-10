@@ -8,6 +8,7 @@ import org.vsa.audio.AudioException;
 import org.vsa.util.FileUtil;
 import org.vsa.weka.VoiceStressInstance;
 import org.vsa.weka.VoiceStressInstanceList;
+import weka.core.Instances;
 
 /**
  * Interrogation
@@ -79,4 +80,50 @@ public class Interrogation {
 
         return instanceList;
     }
+
+    /**
+     * toWekaInstances
+     * 
+     * @return
+     * @throws IOException
+     * @throws UnsupportedAudioFileException
+     * @throws AudioException
+     */
+    public Instances toWekaInstances() throws IOException, UnsupportedAudioFileException, AudioException {
+        // process files
+        VoiceStressInstanceList voiceStressInstanceList = this.processFiles();
+    
+        // convert to weka instances
+        Instances instances = voiceStressInstanceList.toWekaInstances();
+
+        // return instances
+        return instances;
+    }
+
+    /**
+     * generateArff
+     * 
+     * @param outputPath
+     * @throws IOException
+     * @throws UnsupportedAudioFileException
+     * @throws AudioException
+     */
+    public void generateArff(String outputPath) throws IOException, UnsupportedAudioFileException, AudioException {
+        // process files
+        VoiceStressInstanceList voiceStressInstanceList = this.processFiles();
+
+        // write instances to arff file
+        voiceStressInstanceList.toArffFile(outputPath);
+    }
+
+    /**
+     * toString
+     * 
+     * @return 
+     */
+    @Override
+    public String toString() {
+        return name;
+    }
+    
 }

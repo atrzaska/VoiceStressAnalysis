@@ -150,13 +150,6 @@
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
         </dependency>
-        
-        <!-- unsed for converting doubles list to array -->
-         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>r09</version>
-        </dependency>
 
         <!-- mig layout -->
         <dependency>
@@ -178,6 +171,13 @@
             <artifactId>jmathplot</artifactId>
             <version>1.0</version>
         </dependency>
+        
+        <!-- UNUSED unsed for converting doubles list to array -->
+         <!-- <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>r09</version>
+        </dependency> -->
 
         <!-- UNUSED used for logging -->
         <!-- <dependency>

@@ -59,4 +59,20 @@ public class InterrogationList {
     public Interrogation getInterrogation(int index) {
         return interrogations.get(index);
     }
+
+    /**
+     * getInterrogation
+     * 
+     * @param name
+     * @return 
+     */
+    public Interrogation getInterrogation(String name) {
+        for(Interrogation interrogation : interrogations) {
+            if(interrogation.getName().equalsIgnoreCase(name)) {
+                return interrogation;
+            }
+        }
+
+        return null;
+    }
 }

@@ -10,8 +10,6 @@ import weka.classifiers.trees.RandomTree;
 import weka.core.Instances;
 
 public class Classification {
-
-    public Classification() { }
     
     //classify with default option
     public J48 classifyJ48(Instances data) throws Exception{
