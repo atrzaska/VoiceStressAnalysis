@@ -1,14 +1,14 @@
 package org.vsa.gui;
 
 /**
- * ClassificationSummaryWindow
+ * SummaryWindow
  */
-public class ClassificationSummaryWindow extends javax.swing.JFrame {
+public class SummaryWindow extends javax.swing.JFrame {
 
     /**
      * Creates new form ClassificationSummaryWindow
      */
-    public ClassificationSummaryWindow() {
+    public SummaryWindow() {
         initComponents();
     }
     
@@ -34,7 +34,8 @@ public class ClassificationSummaryWindow extends javax.swing.JFrame {
         txtSummary = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Podsumowanie");
 
         txtSummary.setColumns(20);
         txtSummary.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
@@ -42,6 +43,11 @@ public class ClassificationSummaryWindow extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtSummary);
 
         jButton1.setText("OK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,6 +74,11 @@ public class ClassificationSummaryWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;

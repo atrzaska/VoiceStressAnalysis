@@ -40,6 +40,15 @@ public class Interrogation {
     }
 
     /**
+     * numFiles
+     * 
+     * @return 
+     */
+    public int numFiles() {
+        return files.size();
+    }
+
+    /**
      * Default constructor.
      * 
      * @param name 
@@ -114,6 +123,16 @@ public class Interrogation {
 
         // write instances to arff file
         voiceStressInstanceList.toArffFile(outputPath);
+    }
+
+    /**
+     * toSummaryString
+     * 
+     * @return 
+     */
+    public String toSummaryString() {
+        return "Nazwa przesłuchania: " + this.getName() + "\n" +
+                "Liczba plików dźwiękowych" + this.numFiles();
     }
 
     /**
