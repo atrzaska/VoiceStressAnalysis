@@ -48,7 +48,7 @@ public class Config {
     /**
      * threshold
      */
-    public static final double cepstrumThreshold = 0.0;
+    public static final double cepstrumThreshold = 15.0;
     
     /**
      * wavPath
