@@ -1,13 +1,11 @@
-package org.vsa.gui.classes;
+package org.vsa.gui.tasks;
 
 import java.awt.Cursor;
-import java.io.IOException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import org.vsa.api.Interrogation;
-import org.vsa.audio.AudioException;
 import org.vsa.gui.MainWindow;
+import org.vsa.gui.ProgressWindow;
 import org.vsa.gui.SummaryWindow;
 import org.vsa.weka.Classification;
 import org.vsa.weka.Evaluate;
@@ -23,15 +21,15 @@ public class ClassifyTask extends SwingWorker<Void,Void> {
     /**
      * interrogation
      */
-    private final MainWindow mainWindow;
+    private final MainWindow window;
 
     /**
      * ClassifyTask
      * 
-     * @param mainWindow 
+     * @param window 
      */
-    public ClassifyTask(MainWindow mainWindow) {
-        this.mainWindow = mainWindow;
+    public ClassifyTask(MainWindow window) {
+        this.window = window;
     }
 
     /**
@@ -43,11 +41,16 @@ public class ClassifyTask extends SwingWorker<Void,Void> {
     @Override
     protected Void doInBackground() throws Exception {
         // set wait cursor
-        mainWindow.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        window.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+        // create progress window
+        ProgressWindow progressWindow = new ProgressWindow(window);
+        progressWindow.setVisible(true);
+        progressWindow.setIndeterminate(true);
 
         try {
             // get interrogation from list
-            Interrogation interrogation = (Interrogation)mainWindow.getSelectedInterrogation();
+            Interrogation interrogation = (Interrogation)window.getSelectedInterrogation();
 
             // get instances
             Instances instances = interrogation.toWekaInstances();
@@ -65,24 +68,24 @@ public class ClassifyTask extends SwingWorker<Void,Void> {
             Evaluation evaluation = evaluate.crossValidation(classifier, instances, 6);
 
             // create summary window
-            SummaryWindow window = new SummaryWindow();
-            window.setVisible(true);
+            SummaryWindow summaryWindow = new SummaryWindow(window);
+            summaryWindow.setVisible(true);
 
             // set text
-            window.setTextSummary(evaluation.toSummaryString());
+            summaryWindow.setTextSummary(evaluation.toSummaryString());
         } catch(Exception e) {
             
             // show exception message
-            JOptionPane.showMessageDialog(mainWindow, e.getLocalizedMessage());
+            JOptionPane.showMessageDialog(window, e.getLocalizedMessage());
         }
+        
+        // set default cursor
+        window.setCursor(null);
+
+        // close progress window
+        progressWindow.dispose();
 
         // return
         return null;
-    }
-
-    @Override
-    public void done() {
-        // set default cursor
-        mainWindow.setCursor(null);
     }
 }

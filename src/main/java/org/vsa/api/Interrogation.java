@@ -18,7 +18,7 @@ public class Interrogation {
     /**
      * name
      */
-    private final String name;
+    private String name;
 
     /**
      * files
@@ -26,6 +26,13 @@ public class Interrogation {
     private final List<String> files;
 
     /**
+     * instanceList
+     */
+    private VoiceStressInstanceList instanceList;
+
+    /**
+     * getName
+     * 
      * @return the name
      */
     public String getName() {
@@ -33,10 +40,12 @@ public class Interrogation {
     }
 
     /**
-     * @return the files
+     * setName
+     * 
+     * @param name
      */
-    public List<String> setName() {
-        return files;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
@@ -46,6 +55,15 @@ public class Interrogation {
      */
     public int numFiles() {
         return files.size();
+    }
+
+    /**
+     * getFiles
+     * 
+     * @return the files
+     */
+    public List<String> getFiles() {
+        return files;
     }
 
     /**
@@ -87,6 +105,7 @@ public class Interrogation {
             instanceList.addInstance(instance);
         }
 
+        // return
         return instanceList;
     }
 
@@ -99,11 +118,8 @@ public class Interrogation {
      * @throws AudioException
      */
     public Instances toWekaInstances() throws IOException, UnsupportedAudioFileException, AudioException {
-        // process files
-        VoiceStressInstanceList voiceStressInstanceList = this.processFiles();
-    
         // convert to weka instances
-        Instances instances = voiceStressInstanceList.toWekaInstances();
+        Instances instances = getInstanceList().toWekaInstances();
 
         // return instances
         return instances;
@@ -118,11 +134,8 @@ public class Interrogation {
      * @throws AudioException
      */
     public void generateArff(String outputPath) throws IOException, UnsupportedAudioFileException, AudioException {
-        // process files
-        VoiceStressInstanceList voiceStressInstanceList = this.processFiles();
-
         // write instances to arff file
-        voiceStressInstanceList.toArffFile(outputPath);
+        getInstanceList().toArffFile(outputPath);
     }
 
     /**
@@ -144,5 +157,21 @@ public class Interrogation {
     public String toString() {
         return name;
     }
-    
+
+    /**
+     * getInstanceList
+     * 
+     * @return the instanceList
+     * @throws java.io.IOException
+     * @throws javax.sound.sampled.UnsupportedAudioFileException
+     * @throws org.vsa.audio.AudioException
+     */
+    public VoiceStressInstanceList getInstanceList() throws IOException, UnsupportedAudioFileException, AudioException {
+        // process files if null
+        if(instanceList == null) {
+            instanceList = this.processFiles();
+        }
+
+        return instanceList;
+    }
 }

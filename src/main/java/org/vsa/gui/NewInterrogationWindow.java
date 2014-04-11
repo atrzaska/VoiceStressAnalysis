@@ -10,13 +10,16 @@ package org.vsa.gui;
  *
  * @author Andrzej
  */
-public class NewInterrogationWindow extends javax.swing.JPanel {
+public class NewInterrogationWindow extends javax.swing.JDialog {
 
     /**
      * Creates new form NewInterrogationWindow
+     * 
+     * @param mainWindow
      */
-    public NewInterrogationWindow() {
+    public NewInterrogationWindow(MainWindow mainWindow) {
         initComponents();
+        setLocationRelativeTo(mainWindow);
     }
 
     /**

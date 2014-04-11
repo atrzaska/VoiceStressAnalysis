@@ -1,24 +1,17 @@
 package org.vsa.gui;
 
-import java.awt.Cursor;
-import java.io.IOException;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.List;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import org.vsa.Config;
 import org.vsa.api.Interrogation;
 import org.vsa.api.VsaSystem;
-import org.vsa.audio.AudioException;
-import org.vsa.gui.classes.ClassifyTask;
-import org.vsa.gui.classes.GenerateArffTask;
-import org.vsa.gui.classes.InterrogationListModel;
-import org.vsa.util.FileUtil;
-import org.vsa.weka.Classification;
-import org.vsa.weka.Evaluate;
-import weka.classifiers.Evaluation;
-import weka.classifiers.trees.J48;
-import weka.core.Instances;
+import org.vsa.gui.listmodels.InterrogationListModel;
+import org.vsa.gui.tasks.ClassifyTask;
+import org.vsa.gui.tasks.GenerateArffTask;
+import org.vsa.gui.tasks.ShowInterrogationDetailsTask;
+import org.vsa.gui.tasks.ShowSummaryTask;
 
 /**
  * MainWindow
@@ -36,6 +29,10 @@ public class MainWindow extends JFrame {
     public MainWindow() {
         // init components
         initComponents();
+
+        // center this window
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
         // set list model
         lbInterrogations.setModel(new InterrogationListModel(vsaSystem));
@@ -82,6 +79,7 @@ public class MainWindow extends JFrame {
         mnuExit = new javax.swing.JMenuItem();
         mnuAction = new javax.swing.JMenu();
         mnuNewInterrogation = new javax.swing.JMenuItem();
+        mnuSummary = new javax.swing.JMenuItem();
         mnuDetails = new javax.swing.JMenuItem();
         mnuClassify = new javax.swing.JMenuItem();
         mnuGenerateArff = new javax.swing.JMenuItem();
@@ -125,6 +123,14 @@ public class MainWindow extends JFrame {
             }
         });
         mnuAction.add(mnuNewInterrogation);
+
+        mnuSummary.setText("Podsumowanie");
+        mnuSummary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuSummaryActionPerformed(evt);
+            }
+        });
+        mnuAction.add(mnuSummary);
 
         mnuDetails.setText("Sczegóły");
         mnuDetails.addActionListener(new java.awt.event.ActionListener() {
@@ -185,23 +191,28 @@ public class MainWindow extends JFrame {
     }//GEN-LAST:event_mnuNewInterrogationActionPerformed
 
     private void mnuGenerateArffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuGenerateArffActionPerformed
-        GenerateArffTask generateArffTask = new GenerateArffTask(this);
-        generateArffTask.execute();
+        GenerateArffTask task = new GenerateArffTask(this);
+        task.execute();
     }//GEN-LAST:event_mnuGenerateArffActionPerformed
 
     private void mnuClassifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuClassifyActionPerformed
-        ClassifyTask classifyTask = new ClassifyTask(this);
-        classifyTask.execute();
+        ClassifyTask task = new ClassifyTask(this);
+        task.execute();
     }//GEN-LAST:event_mnuClassifyActionPerformed
 
     private void mnuDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDetailsActionPerformed
-        GenerateArffTask summaryTask = new GenerateArffTask(this);
-        summaryTask.execute();
+        ShowInterrogationDetailsTask task = new ShowInterrogationDetailsTask(this);
+        task.execute();
     }//GEN-LAST:event_mnuDetailsActionPerformed
 
     private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuExitActionPerformed
         this.dispose();
     }//GEN-LAST:event_mnuExitActionPerformed
+
+    private void mnuSummaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSummaryActionPerformed
+        ShowSummaryTask task = new ShowSummaryTask(this);
+        task.execute();
+    }//GEN-LAST:event_mnuSummaryActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
@@ -215,5 +226,6 @@ public class MainWindow extends JFrame {
     private javax.swing.JMenu mnuFile;
     private javax.swing.JMenuItem mnuGenerateArff;
     private javax.swing.JMenuItem mnuNewInterrogation;
+    private javax.swing.JMenuItem mnuSummary;
     // End of variables declaration//GEN-END:variables
 }

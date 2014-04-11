@@ -1,4 +1,4 @@
-package org.vsa.gui.classes;
+package org.vsa.gui.listmodels;
 
 import javax.swing.ListModel;
 import javax.swing.event.ListDataListener;

@@ -1,5 +1,6 @@
 package org.vsa.weka;
 
+import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import org.vsa.api.VoiceStressAnalyser;
@@ -13,6 +14,16 @@ import weka.core.Instances;
  * VoiceStressInstance class.
  */
 public class VoiceStressInstance {
+    
+    /**
+     * name
+     */
+    private String name;
+
+    /**
+     * path
+     */
+    private String path;
 
     /**
      * totalF0
@@ -63,6 +74,42 @@ public class VoiceStressInstance {
      * stressed
      */
     private boolean stressed;
+
+    /**
+     * getName
+     * 
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * setName
+     * 
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * getPath
+     * 
+     * @return the path
+     */
+    public String getPath() {
+        return path;
+    }
+
+    /**
+     * setPath
+     * 
+     * @param path the path to set
+     */
+    public void setPath(String path) {
+        this.path = path;
+    }
 
     /**
      * getTotalF0
@@ -272,6 +319,24 @@ public class VoiceStressInstance {
     }
     
     /**
+     * getFundamentalFrequencyVector
+     * 
+     * @return 
+     * @throws java.io.IOException 
+     * @throws javax.sound.sampled.UnsupportedAudioFileException 
+     * @throws org.vsa.audio.AudioException 
+     */
+    public double[] getFundamentalFrequencyVector() throws IOException, UnsupportedAudioFileException, AudioException {
+        // create voice stress analyser
+        VoiceStressAnalyser voiceStressAnalyser = new VoiceStressAnalyser(path);
+        
+        // get f0 vector
+        double[] f0vector = voiceStressAnalyser.getFundamentalFrequencyVector();
+
+        // return
+        return f0vector;
+    }
+    /**
      * fromSoundFile
      * 
      * @param path
@@ -287,8 +352,14 @@ public class VoiceStressInstance {
         // get f0 vector
         double[] f0vector = voiceStressAnalyser.getFundamentalFrequencyVector();
 
+        // create file
+        File file = new File(path);
+        
+        // get instance name
+        String name = file.getName();
+
         // check if stressed
-        boolean stressed = !(path.contains("unstressed"));
+        boolean stressed = !(name.contains("unstressed"));
 
         // get f0 total
         double f0total = voiceStressAnalyser.getTotalFundamentalFrequency();
@@ -305,8 +376,20 @@ public class VoiceStressInstance {
         instance.setKurtosis(MathUtil.kurtosis(f0vector));
         instance.setTotalF0(f0total);
         instance.setStressed(stressed);
+        instance.setName(name);
+        instance.setPath(path);
 
         // return instance
         return instance;
+    }
+
+    /**
+     * toString
+     * 
+     * @return 
+     */
+    @Override
+    public String toString() {
+        return name;
     }
 }

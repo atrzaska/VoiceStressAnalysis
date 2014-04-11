@@ -2,7 +2,9 @@ package org.vsa.util;
 
 import java.io.IOException;
 import javax.swing.JFrame;
+import org.apache.commons.math3.analysis.function.Gaussian;
 import org.math.plot.Plot2DPanel;
+import org.vsa.weka.VoiceStressInstance;
 
 public class PlotUtil {
 
@@ -37,15 +39,15 @@ public class PlotUtil {
 
         // plot
         Plot2DPanel plot = new Plot2DPanel();
-        plot.setLegendOrientation("EAST");
-        plot.addLegend("Nagranie");
+//        plot.setLegendOrientation("EAST");
+//        plot.addLegend("Nagranie");
         plot.addLinePlot("Nagranie", x, signal);
 
         // frame
         JFrame frame = new JFrame("Nagranie");
         frame.setSize(600, 600);
         frame.setContentPane(plot);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setVisible(true);
     }
 
@@ -82,15 +84,15 @@ public class PlotUtil {
 
         // plot
         Plot2DPanel plot = new Plot2DPanel();
-        plot.setLegendOrientation("EAST");
-        plot.addLegend("Spectrum");
+//        plot.setLegendOrientation("EAST");
+//        plot.addLegend("Spectrum");
         plot.addLinePlot("Spectrum", x, spectrum);
 
         // frame
         JFrame frame = new JFrame("Spectrum");
         frame.setSize(600, 600);
         frame.setContentPane(plot);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setVisible(true);
     }
 
@@ -141,7 +143,7 @@ public class PlotUtil {
         JFrame frame = new JFrame("Cepstrum");
         frame.setSize(600, 600);
         frame.setContentPane(plot);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setVisible(true);
     }
 
@@ -161,8 +163,8 @@ public class PlotUtil {
 
         // plot
         Plot2DPanel plot = new Plot2DPanel();
-        plot.setLegendOrientation("EAST");
-        plot.addLegend("Ton Podstawowy");
+//        plot.setLegendOrientation("EAST");
+//        plot.addLegend("Ton Podstawowy");
         plot.addLinePlot("Ton Podstawowy", x, y);
         plot.setAxisLabel(0, "Nr okna");
         plot.setAxisLabel(1, "Częstotliwość [Hz]");
@@ -171,7 +173,51 @@ public class PlotUtil {
         JFrame frame = new JFrame("Ton Podstawowy");
         frame.setSize(600, 600);
         frame.setContentPane(plot);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setVisible(true);
+    }
+
+    /**
+     * drawF0NormalDistribution
+     * 
+     * @param instance 
+     */
+    public static void drawF0NormalDistribution(VoiceStressInstance instance) {
+        // create gaussian function
+        Gaussian gaussian = new Gaussian(instance.getMean(), instance.getStd());
+        
+        // get max - min
+        double diff = instance.getMax() - instance.getMin();
+        
+        // create x array
+        double[] x = new double[1000];
+        
+        // calculate x values
+        for(int i = 0; i < x.length; i++) {
+            x[i] = instance.getMin() + (i / 1000 * diff);
+        }
+
+        // create y array
+        double[] y = new double[1000];
+
+        // calculate y values
+        for(int i = 0; i < y.length; i++) {
+            y[i] = gaussian.value(x[i]);
+        }
+
+        // plot
+        Plot2DPanel plot = new Plot2DPanel();
+//        plot.setLegendOrientation("EAST");
+//        plot.addLegend("Rozkład normanlny tonu fundamentalnego");
+        plot.addLinePlot("Rozkład normanlny tonu fundamentalnego", x, y);
+        plot.setAxisLabel(0, "Częstotliwość [Hz]");
+        plot.setAxisLabel(1, "Rozkład ");
+
+        // frame
+        JFrame frame = new JFrame("Ton Podstawowy");
+        frame.setSize(600, 600);
+        frame.setContentPane(plot);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setVisible(true);
     }
 }

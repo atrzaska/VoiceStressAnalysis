@@ -1,22 +1,53 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package org.vsa.gui;
 
+import java.io.IOException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import org.vsa.api.Interrogation;
+import org.vsa.audio.AudioException;
+import org.vsa.gui.listmodels.VoiceStressInstanceListModel;
+import org.vsa.gui.tasks.DrawFundamentalFrequencyVectorTask;
+import org.vsa.gui.tasks.ShowDistributionTask;
+import org.vsa.weka.VoiceStressInstance;
+import org.vsa.weka.VoiceStressInstanceList;
+
 /**
- *
- * @author Andrzej
+ * InterrogationWindow
  */
-public class InterrogationWindow extends javax.swing.JPanel {
+public class InterrogationWindow extends javax.swing.JDialog {
 
     /**
      * Creates new form InterrogationWindow
+     * 
+     * @param parent
+     * @throws java.io.IOException
+     * @throws javax.sound.sampled.UnsupportedAudioFileException
+     * @throws org.vsa.audio.AudioException
      */
-    public InterrogationWindow() {
+    public InterrogationWindow(MainWindow parent) throws IOException, UnsupportedAudioFileException, AudioException {
+        // init
         initComponents();
+        
+        // set size
+        this.setSize(400, 400);
+        
+        // center on parent
+        this.setLocationRelativeTo(parent);
+        
+        // get interrogation
+        Interrogation interrogation = parent.getSelectedInterrogation();
+
+        // set model
+        VoiceStressInstanceList voiceStressInstanceList = interrogation.getInstanceList();
+        this.lbRecordings.setModel(new VoiceStressInstanceListModel(voiceStressInstanceList));
+    }
+
+    /**
+     * getSelectedInstance
+     * 
+     * @return 
+     */
+    public VoiceStressInstance getSelectedInstance() {
+        return (VoiceStressInstance)lbRecordings.getSelectedValue();
     }
 
     /**
@@ -28,18 +59,102 @@ public class InterrogationWindow extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lbRecordings = new javax.swing.JList();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu4 = new javax.swing.JMenu();
+        mnuShowF0 = new javax.swing.JMenuItem();
+        mnuShowDistribution = new javax.swing.JMenuItem();
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Szczegóły");
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Odpowiedzi")));
+
+        lbRecordings.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(lbRecordings);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+        );
+
+        jMenu4.setText("Akcja");
+
+        mnuShowF0.setText("Pokaż ton fundamentalny");
+        mnuShowF0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuShowF0ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnuShowF0);
+
+        mnuShowDistribution.setText("Pokaż rozkład tonu fundamentalnego");
+        mnuShowDistribution.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuShowDistributionActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnuShowDistribution);
+
+        jMenuBar2.add(jMenu4);
+
+        setJMenuBar(jMenuBar2);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 506, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 442, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void mnuShowF0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuShowF0ActionPerformed
+        DrawFundamentalFrequencyVectorTask task = new DrawFundamentalFrequencyVectorTask(this);
+        task.execute();
+    }//GEN-LAST:event_mnuShowF0ActionPerformed
+
+    private void mnuShowDistributionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuShowDistributionActionPerformed
+        ShowDistributionTask task = new ShowDistributionTask(this);
+        task.execute();
+    }//GEN-LAST:event_mnuShowDistributionActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList lbRecordings;
+    private javax.swing.JMenuItem mnuShowDistribution;
+    private javax.swing.JMenuItem mnuShowF0;
     // End of variables declaration//GEN-END:variables
 }

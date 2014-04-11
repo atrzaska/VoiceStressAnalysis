@@ -172,6 +172,13 @@
             <version>1.0</version>
         </dependency>
         
+        <!-- UNUSED jfreechart for drawing charts -->
+        <!-- <dependency>
+            <groupId>jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.0.13</version>
+        </dependency> -->
+        
         <!-- UNUSED unsed for converting doubles list to array -->
          <!-- <dependency>
             <groupId>com.google.guava</groupId>
