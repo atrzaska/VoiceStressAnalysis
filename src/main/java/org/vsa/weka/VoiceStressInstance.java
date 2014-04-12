@@ -447,7 +447,7 @@ public class VoiceStressInstance {
         instance.setIqr(MathUtil.iqr(f0vector));
         instance.setKurtosis(MathUtil.kurtosis(f0vector));
         instance.setRange(MathUtil.range(f0vector));
-        instance.setPower(MathUtil.mean(voiceStressAnalyser.getSignal()));
+        instance.setPower(MathUtil.absMean(voiceStressAnalyser.getSignal()));
         instance.setTotalF0(f0total);
         instance.setStressed(stressed);
         instance.setName(name);

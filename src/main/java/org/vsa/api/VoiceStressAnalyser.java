@@ -336,14 +336,13 @@ public final class VoiceStressAnalyser {
         double[] tmp = new double[getSignal().length];
         
         // copy signal
-        System.arraycopy(tmp, 0, getSignal(), 0, getSignal().length);
+        System.arraycopy(getSignal(), 0, tmp, 0, getSignal().length);
 
         // apply hamming window
         SoundWindowUtil.applyHammingWindow(tmp);
 
         // get f0
         double f0 = this.calculateFundamentalFrequencyWithCepstrum(tmp);
-//        double f0 = this.calculateFundamentalFrequencyWithCepstrum(this.getSignal());
 
         // return value
         return f0;

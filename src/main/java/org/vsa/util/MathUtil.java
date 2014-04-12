@@ -28,6 +28,25 @@ public class MathUtil {
     }
 
     /**
+     * absMean
+     * 
+     * @param signal
+     * @return 
+     */
+    public static double absMean(double[] arr) {
+        double result = 0;
+        double len = arr.length;
+
+        for(int i = 0; i < arr.length; i++) {
+            double val = Math.abs(arr[i]);
+
+            result += val / len;
+        }
+        
+        return result;
+    }
+
+    /**
      * max index in array
      * 
      * @param arr
