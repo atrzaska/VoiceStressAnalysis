@@ -79,6 +79,114 @@ public final class VoiceStressAnalyser {
     private final double[] signal;
 
     /**
+     * getSignal
+     * 
+     * @return the signal
+     */
+    public double[] getSignal() {
+        return signal;
+    }
+
+    /**
+     * getAudioReader
+     * 
+     * @return the audioReader
+     */
+    public AudioReader getAudioReader() {
+        return audioReader;
+    }
+
+    /**
+     * getSampleRate
+     * 
+     * @return the sampleRate
+     */
+    public int getSampleRate() {
+        return sampleRate;
+    }
+
+    /**
+     * getSampleTime
+     * 
+     * @return the sampleTime
+     */
+    public double getSampleTime() {
+        return sampleTime;
+    }
+
+    /**
+     * getNumSamples
+     * 
+     * @return the numSamples
+     */
+    public int getNumSamples() {
+        return numSamples;
+    }
+
+    /**
+     * getFramesPerWindow
+     * 
+     * @return the framesPerWindow
+     */
+    public int getFramesPerWindow() {
+        return framesPerWindow;
+    }
+
+    /**
+     * getNumWindows
+     * 
+     * @return the numWindows
+     */
+    public int getNumWindows() {
+        return numWindows;
+    }
+
+    /**
+     * getFramesPerStep
+     * 
+     * @return the framesPerStep
+     */
+    public int getFramesPerStep() {
+        return framesPerStep;
+    }
+
+    /**
+     * getNumSteps
+     * 
+     * @return the numSteps
+     */
+    public int getNumSteps() {
+        return numSteps;
+    }
+
+    /**
+     * getHzStart
+     * 
+     * @return the hzStart
+     */
+    public int getHzStart() {
+        return hzStart;
+    }
+
+    /**
+     * getHzEnd
+     * 
+     * @return the hzEnd
+     */
+    public int getHzEnd() {
+        return hzEnd;
+    }
+
+    /**
+     * getHzWindowSize
+     * 
+     * @return the hzWindowSize
+     */
+    public int getHzWindowSize() {
+        return hzWindowSize;
+    }
+
+    /**
      * Default constructor
      * 
      * @param file
@@ -147,12 +255,12 @@ public final class VoiceStressAnalyser {
         List<Double> output = new ArrayList<>();
 
         // get F0 for each window
-        for (int i = 0; i < numSteps; i++) {
-            int start = i * framesPerStep;
-            int end = start + framesPerWindow;
-            int size = framesPerWindow;
+        for (int i = 0; i < getNumSteps(); i++) {
+            int start = i * getFramesPerStep();
+            int end = start + getFramesPerWindow();
+            int size = getFramesPerWindow();
 
-            if(end >= signal.length) {
+            if(end >= getSignal().length) {
                 break;
             }
 
@@ -160,7 +268,7 @@ public final class VoiceStressAnalyser {
             double[] window = new double[size];
 
             // copy signal part to window
-            System.arraycopy(signal, start, window, 0, size);
+            System.arraycopy(getSignal(), start, window, 0, size);
 
             // apply window function
             SoundWindowUtil.applyHammingWindow(window);
@@ -189,10 +297,10 @@ public final class VoiceStressAnalyser {
         double[] powCeps = CepstrumUtil.powerCepstrum(signal);
 
         // create voiceWindow array
-        double[] voiceWindow = new double[this.hzWindowSize];
+        double[] voiceWindow = new double[this.getHzWindowSize()];
 
         // copy data
-        System.arraycopy(powCeps, this.hzStart - 1, voiceWindow, 0, this.hzWindowSize);
+        System.arraycopy(powCeps, this.getHzStart() - 1, voiceWindow, 0, this.getHzWindowSize());
 
         // find max value
         double maxVal  = MathUtil.max(voiceWindow);
@@ -212,7 +320,7 @@ public final class VoiceStressAnalyser {
         int maxIndex = MathUtil.maxIndex(voiceWindow);
 
         // calculate F0
-        double F0 = 1 / (sampleTime * ((maxIndex + hzStart) - 1));
+        double F0 = 1 / (getSampleTime() * ((maxIndex + getHzStart()) - 1));
 
         // return value
         return F0;
@@ -225,16 +333,17 @@ public final class VoiceStressAnalyser {
      */
     public double getTotalFundamentalFrequency() {
         // create temp array
-        double[] tmp = new double[signal.length];
+        double[] tmp = new double[getSignal().length];
         
         // copy signal
-        System.arraycopy(tmp, 0, signal, 0, signal.length);
+        System.arraycopy(tmp, 0, getSignal(), 0, getSignal().length);
 
         // apply hamming window
         SoundWindowUtil.applyHammingWindow(tmp);
 
         // get f0
-        double f0 = this.calculateFundamentalFrequencyWithCepstrum(tmp);
+//        double f0 = this.calculateFundamentalFrequencyWithCepstrum(tmp);
+        double f0 = this.calculateFundamentalFrequencyWithCepstrum(this.getSignal());
 
         // return value
         return f0;

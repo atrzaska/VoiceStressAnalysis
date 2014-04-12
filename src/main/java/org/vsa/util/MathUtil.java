@@ -91,7 +91,18 @@ public class MathUtil {
      */
     public static double median(double[] arr) {
         DescriptiveStatistics ds = new DescriptiveStatistics(arr);
-        return ds.getPercentile(0.50);
+        return ds.getPercentile(50);
+    }
+    
+    /**
+     * range
+     * 
+     * @param arr
+     * @return 
+     */
+    public static double range(double[] arr) {
+        DescriptiveStatistics ds = new DescriptiveStatistics(arr);
+        return ds.getMax() - ds.getMin();
     }
     
     /**

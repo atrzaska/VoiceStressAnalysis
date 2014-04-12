@@ -79,14 +79,17 @@ public class VoiceStressInstanceList {
 
         // create attributes
         Attribute a1 = new Attribute("mean");
-        Attribute a2 = new Attribute("min");
-        Attribute a3 = new Attribute("max");
-        Attribute a4 = new Attribute("std");
-        Attribute a5 = new Attribute("lowQuantile");
-        Attribute a6 = new Attribute("highQuantile");
-        Attribute a7 = new Attribute("iqr");
-        Attribute a8 = new Attribute("kurtosis");
-        Attribute a9 = new Attribute("f0total");
+        Attribute a2 = new Attribute("median");
+        Attribute a3 = new Attribute("min");
+        Attribute a4 = new Attribute("max");
+        Attribute a5 = new Attribute("std");
+        Attribute a6 = new Attribute("lowQuantile");
+        Attribute a7 = new Attribute("highQuantile");
+        Attribute a8 = new Attribute("iqr");
+        Attribute a9 = new Attribute("kurtosis");
+        Attribute a10 = new Attribute("range");
+        Attribute a11 = new Attribute("power");
+        Attribute a12 = new Attribute("f0total");
         Attribute classAttr = new Attribute("class", classAttributeValues);
 
         // create attributes list
@@ -100,6 +103,9 @@ public class VoiceStressInstanceList {
         attributes.add(a7);
         attributes.add(a8);
         attributes.add(a9);
+        attributes.add(a10);
+        attributes.add(a11);
+        attributes.add(a12);
         attributes.add(classAttr);
 
         // create instances array

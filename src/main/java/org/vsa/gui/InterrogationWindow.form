@@ -27,6 +27,30 @@
             <Property name="text" type="java.lang.String" value="Akcja"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuShowWaveform">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Poka&#x17c; nagranie"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuShowWaveformActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuShowSpectrum">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Poka&#x17c; spektrum"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuShowSpectrumActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuShowCepstrum">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Poka&#x17c; cepstrum"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuShowCepstrumActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuShowF0">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Poka&#x17c; ton fundamentalny"/>
@@ -41,6 +65,14 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuShowDistributionActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuDetails">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Szczeg&#xf3;&#x142;y"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuDetailsActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

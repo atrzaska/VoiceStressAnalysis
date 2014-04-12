@@ -2,6 +2,7 @@ package org.vsa.weka;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import org.vsa.api.VoiceStressAnalyser;
 import org.vsa.audio.AudioException;
@@ -74,6 +75,21 @@ public class VoiceStressInstance {
      * stressed
      */
     private boolean stressed;
+    
+    /**
+     * median
+     */
+    private double median;
+    
+    /**
+     * power
+     */
+    private double power;
+    
+    /**
+     * range
+     */
+    private double range;
 
     /**
      * getName
@@ -292,6 +308,58 @@ public class VoiceStressInstance {
     }
 
     /**
+     * getMedian
+     * 
+     * @return the median
+     */
+    public double getMedian() {
+        return median;
+    }
+
+    /**
+     * setMedian
+     * 
+     * @param median the median to set
+     */
+    public void setMedian(double median) {
+        this.median = median;
+    }
+
+    /**
+     * @return the power
+     */
+    public double getPower() {
+        return power;
+    }
+
+    /**
+     * setPower
+     * 
+     * @param power the power to set
+     */
+    public void setPower(double power) {
+        this.power = power;
+    }
+
+    /**
+     * getRange
+     * 
+     * @return the range
+     */
+    public double getRange() {
+        return range;
+    }
+
+    /**
+     * setRange
+     * 
+     * @param range the range to set
+     */
+    public void setRange(double range) {
+        this.range = range;
+    }
+
+    /**
      * toWekaInstance
      * 
      * @param dataset
@@ -299,20 +367,23 @@ public class VoiceStressInstance {
      */
     public Instance toWekaInstance(Instances dataset) {
         // create instance
-        DenseInstance instance = new DenseInstance(10);
+        DenseInstance instance = new DenseInstance(13);
         instance.setDataset(dataset);
 
         // set values
-        instance.setValue(0, mean);
-        instance.setValue(1, min);
-        instance.setValue(2, max);
-        instance.setValue(3, std);
-        instance.setValue(4, lowQuantile);
-        instance.setValue(5, highQuantile);
-        instance.setValue(6, iqr);
-        instance.setValue(7, kurtosis);
-        instance.setValue(8, totalF0);
-        instance.setValue(9, stressed ? "stressed" : "unstressed");
+        instance.setValue(0, this.getMean());
+        instance.setValue(1, this.getMedian());
+        instance.setValue(2, this.getMin());
+        instance.setValue(3, this.getMax());
+        instance.setValue(4, this.getStd());
+        instance.setValue(5, this.getLowQuantile());
+        instance.setValue(6, this.getHighQuantile());
+        instance.setValue(7, this.getIqr());
+        instance.setValue(8, this.getKurtosis());
+        instance.setValue(9, this.getRange());
+        instance.setValue(10, this.getPower());
+        instance.setValue(11, this.getTotalF0());
+        instance.setValue(12, stressed ? "stressed" : "unstressed");
 
         // return instance
         return instance;
@@ -367,6 +438,7 @@ public class VoiceStressInstance {
         // set parameters
         VoiceStressInstance instance = new VoiceStressInstance();
         instance.setMean(MathUtil.mean(f0vector));
+        instance.setMedian(MathUtil.median(f0vector));
         instance.setMin(MathUtil.min(f0vector));
         instance.setMax(MathUtil.max(f0vector));
         instance.setStd(MathUtil.std(f0vector));
@@ -374,6 +446,8 @@ public class VoiceStressInstance {
         instance.setHighQuantile(MathUtil.highQuantile(f0vector));
         instance.setIqr(MathUtil.iqr(f0vector));
         instance.setKurtosis(MathUtil.kurtosis(f0vector));
+        instance.setRange(MathUtil.range(f0vector));
+        instance.setPower(MathUtil.mean(voiceStressAnalyser.getSignal()));
         instance.setTotalF0(f0total);
         instance.setStressed(stressed);
         instance.setName(name);
@@ -391,5 +465,23 @@ public class VoiceStressInstance {
     @Override
     public String toString() {
         return name;
+    }
+
+    public String toSummaryString() {
+        return "Instance name: " + this.getName() + " \n" +
+                "Path: " + this.getPath() + " \n" +
+                "Mean: " + String.format("%.2f", this.getMean()) + " \n" +
+                "Median: " + String.format("%.2f", this.getMedian()) + " \n" +
+                "Min: " + String.format("%.2f", this.getMin()) + " \n" +
+                "Max: " + String.format("%.2f", this.getMax()) + " \n" +
+                "Std: " + String.format("%.2f", this.getStd()) + " \n" +
+                "LowQuanTile: " + String.format("%.2f", this.getLowQuantile()) + " \n" +
+                "High Quantile: " + String.format("%.2f", this.getHighQuantile()) + " \n" +
+                "Inter quantile range: " + String.format("%.2f", this.getIqr()) + " \n" +
+                "Kurtosis: " + String.format("%.2f", this.getKurtosis()) + " \n" +
+                "Range: " + String.format("%.2f", this.getRange()) + " \n" +
+                "Power: " + String.format("%.2f", this.getPower()) + " \n" +
+                "Total F0: " + String.format("%.2f", this.getTotalF0()) + " \n" +
+                "Stressed: " + this.isStressed();
     }
 }

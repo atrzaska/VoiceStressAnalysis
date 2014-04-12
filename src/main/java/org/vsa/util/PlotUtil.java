@@ -189,16 +189,19 @@ public class PlotUtil {
         // get max - min
         double diff = instance.getMax() - instance.getMin();
         
+        // number of values
+        int numValues = 1000;
+        
         // create x array
-        double[] x = new double[1000];
+        double[] x = new double[numValues];
         
         // calculate x values
-        for(int i = 0; i < x.length; i++) {
-            x[i] = instance.getMin() + (i / 1000 * diff);
+        for(int i = 0; i < numValues; i++) {
+            x[i] = instance.getMin() + (((double)i / (double)numValues) * diff);
         }
 
         // create y array
-        double[] y = new double[1000];
+        double[] y = new double[numValues];
 
         // calculate y values
         for(int i = 0; i < y.length; i++) {

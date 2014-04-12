@@ -1,6 +1,6 @@
 package org.vsa.gui;
 
-import javax.swing.JFrame;
+import java.awt.Component;
 
 /**
  * SummaryWindow
@@ -11,7 +11,7 @@ public class SummaryWindow extends javax.swing.JDialog {
      * Creates new form ClassificationSummaryWindow
      * @param parent
      */
-    public SummaryWindow(JFrame parent) {
+    public SummaryWindow(Component parent) {
         // init
         initComponents();
         

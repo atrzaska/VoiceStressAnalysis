@@ -2,18 +2,23 @@ package org.vsa.gui;
 
 import java.io.IOException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JDialog;
 import org.vsa.api.Interrogation;
 import org.vsa.audio.AudioException;
 import org.vsa.gui.listmodels.VoiceStressInstanceListModel;
 import org.vsa.gui.tasks.DrawFundamentalFrequencyVectorTask;
+import org.vsa.gui.tasks.DrawSpectrumTask;
+import org.vsa.gui.tasks.DrawTotalCepstrumTask;
+import org.vsa.gui.tasks.DrawWaveFormTask;
 import org.vsa.gui.tasks.ShowDistributionTask;
+import org.vsa.gui.tasks.ShowInstanceDetailsTask;
 import org.vsa.weka.VoiceStressInstance;
 import org.vsa.weka.VoiceStressInstanceList;
 
 /**
  * InterrogationWindow
  */
-public class InterrogationWindow extends javax.swing.JDialog {
+public class InterrogationWindow extends JDialog {
 
     /**
      * Creates new form InterrogationWindow
@@ -67,8 +72,12 @@ public class InterrogationWindow extends javax.swing.JDialog {
         lbRecordings = new javax.swing.JList();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
+        mnuShowWaveform = new javax.swing.JMenuItem();
+        mnuShowSpectrum = new javax.swing.JMenuItem();
+        mnuShowCepstrum = new javax.swing.JMenuItem();
         mnuShowF0 = new javax.swing.JMenuItem();
         mnuShowDistribution = new javax.swing.JMenuItem();
+        mnuDetails = new javax.swing.JMenuItem();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -97,6 +106,30 @@ public class InterrogationWindow extends javax.swing.JDialog {
 
         jMenu4.setText("Akcja");
 
+        mnuShowWaveform.setText("Pokaż nagranie");
+        mnuShowWaveform.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuShowWaveformActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnuShowWaveform);
+
+        mnuShowSpectrum.setText("Pokaż spektrum");
+        mnuShowSpectrum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuShowSpectrumActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnuShowSpectrum);
+
+        mnuShowCepstrum.setText("Pokaż cepstrum");
+        mnuShowCepstrum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuShowCepstrumActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnuShowCepstrum);
+
         mnuShowF0.setText("Pokaż ton fundamentalny");
         mnuShowF0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,6 +145,14 @@ public class InterrogationWindow extends javax.swing.JDialog {
             }
         });
         jMenu4.add(mnuShowDistribution);
+
+        mnuDetails.setText("Szczegóły");
+        mnuDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuDetailsActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnuDetails);
 
         jMenuBar2.add(jMenu4);
 
@@ -145,6 +186,26 @@ public class InterrogationWindow extends javax.swing.JDialog {
         task.execute();
     }//GEN-LAST:event_mnuShowDistributionActionPerformed
 
+    private void mnuDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDetailsActionPerformed
+        ShowInstanceDetailsTask task = new ShowInstanceDetailsTask(this);
+        task.execute();
+    }//GEN-LAST:event_mnuDetailsActionPerformed
+
+    private void mnuShowWaveformActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuShowWaveformActionPerformed
+        DrawWaveFormTask task = new DrawWaveFormTask(this);
+        task.execute();
+    }//GEN-LAST:event_mnuShowWaveformActionPerformed
+
+    private void mnuShowSpectrumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuShowSpectrumActionPerformed
+        DrawSpectrumTask task = new DrawSpectrumTask(this);
+        task.execute();
+    }//GEN-LAST:event_mnuShowSpectrumActionPerformed
+
+    private void mnuShowCepstrumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuShowCepstrumActionPerformed
+        DrawTotalCepstrumTask task = new DrawTotalCepstrumTask(this);
+        task.execute();
+    }//GEN-LAST:event_mnuShowCepstrumActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -154,7 +215,11 @@ public class InterrogationWindow extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList lbRecordings;
+    private javax.swing.JMenuItem mnuDetails;
+    private javax.swing.JMenuItem mnuShowCepstrum;
     private javax.swing.JMenuItem mnuShowDistribution;
     private javax.swing.JMenuItem mnuShowF0;
+    private javax.swing.JMenuItem mnuShowSpectrum;
+    private javax.swing.JMenuItem mnuShowWaveform;
     // End of variables declaration//GEN-END:variables
 }
