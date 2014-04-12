@@ -68,5 +68,5 @@ public class Config {
     /**
      * testFile
      */
-    public static final String testFile = "wav/andrzej/nie2.wav";
+    public static final String testFile = "wav/andrzej/unstressed1.wav";
 }

@@ -342,8 +342,8 @@ public final class VoiceStressAnalyser {
         SoundWindowUtil.applyHammingWindow(tmp);
 
         // get f0
-//        double f0 = this.calculateFundamentalFrequencyWithCepstrum(tmp);
-        double f0 = this.calculateFundamentalFrequencyWithCepstrum(this.getSignal());
+        double f0 = this.calculateFundamentalFrequencyWithCepstrum(tmp);
+//        double f0 = this.calculateFundamentalFrequencyWithCepstrum(this.getSignal());
 
         // return value
         return f0;
