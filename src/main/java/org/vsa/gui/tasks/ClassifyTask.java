@@ -57,7 +57,9 @@ public class ClassifyTask extends SwingWorker<Void,Void> {
 
             // create classification
             Classification classification = new Classification();
-
+            
+            String summary = classification.classifyMyInstances(instances);
+/*
             // create desired classifier
             J48 classifier = classification.classifyJ48(instances);
             
@@ -66,13 +68,14 @@ public class ClassifyTask extends SwingWorker<Void,Void> {
             
             // perform cross validation on 6 folds
             Evaluation evaluation = evaluate.crossValidation(classifier, instances, 6);
-
+*/
+            
             // create summary window
             SummaryWindow summaryWindow = new SummaryWindow(window);
             summaryWindow.setVisible(true);
 
             // set text
-            summaryWindow.setTextSummary(evaluation.toSummaryString());
+            summaryWindow.setTextSummary(summary);
         } catch(Exception e) {
             
             // show exception message
