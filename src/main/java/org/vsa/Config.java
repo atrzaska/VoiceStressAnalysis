@@ -68,5 +68,15 @@ public class Config {
     /**
      * testFile
      */
-    public static final String testFile = "wav/andrzej/unstressed1.wav";
+    public static final String testFile = "wav/andrzej/unstressed (1).wav";
+
+    /**
+     * plotNumValues
+     */
+    public static final int plotNumValues = 2000;
+    
+    /**
+     * Config.plotNumValues
+     */
+    public static final int plotXMax = 500;
 }

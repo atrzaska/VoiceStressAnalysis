@@ -7,30 +7,30 @@ public class SoundWindowUtil {
 
     /**
      * applyWindow
-     * 
+     *
      * @param signal
-     * @param window 
+     * @param window
      */
     public static void applyWindow(double[] signal, double[] window) {
         for (int i = 0; i < signal.length; i++) {
-            signal[i] = signal[i]* window[i];
+            signal[i] = signal[i] * window[i];
         }
     }
-    
+
     /**
      * applyHammingWindow
-     * 
-     * @param signal 
+     *
+     * @param signal
      */
     public static void applyHammingWindow(double[] signal) {
         double[] window = hammingWindow(signal.length);
-        
+
         applyWindow(signal, window);
     }
 
     /**
      * hamming window
-     * 
+     *
      * @param L Size
      * @return
      */
@@ -46,7 +46,7 @@ public class SoundWindowUtil {
 
     /**
      * Make a blackman window
-     * 
+     *
      * w(n)=0.42-0.5cos{(2*PI*n)/(N-1)}+0.08cos{(4*PI*n)/(N-1)};
      * @param N size
      * @return

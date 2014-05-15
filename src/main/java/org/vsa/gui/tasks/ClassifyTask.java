@@ -66,10 +66,9 @@ public class ClassifyTask extends SwingWorker<Void,Void> {
             // create evaluation
             Evaluate evaluate = new Evaluate();
             
-            // perform cross validation on 6 folds
-            Evaluation evaluation = evaluate.crossValidation(classifier, instances, 6);
+            // perform cross validation on 10 folds
+            Evaluation evaluation = evaluate.crossValidation(classifier, instances, 10);
 */
-            
             // create summary window
             SummaryWindow summaryWindow = new SummaryWindow(window);
             summaryWindow.setVisible(true);

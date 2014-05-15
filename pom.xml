@@ -144,12 +144,12 @@
             <version>2.4</version>
         </dependency>
 
-        <!-- commons-lang -->
+        <!-- commons-lang 
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
-        </dependency>
+        </dependency>-->
 
         <!-- mig layout -->
         <dependency>

@@ -4,6 +4,7 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import org.apache.commons.math3.analysis.function.Gaussian;
 import org.math.plot.Plot2DPanel;
+import org.vsa.Config;
 import org.vsa.weka.VoiceStressInstance;
 
 public class PlotUtil {
@@ -117,7 +118,7 @@ public class PlotUtil {
         SoundWindowUtil.applyHammingWindow(tmpSignal);
 
         // calculate power cepstrum
-        double[] powCeps = CepstrumUtil.powerCepstrum(signal);
+        double[] powCeps = CepstrumUtil.powerCepstrum(tmpSignal);
 
         // create voiceWindow array
         double[] y = new double[hzWindowSize];
@@ -130,14 +131,20 @@ public class PlotUtil {
 
         // set x values
         for (int i = 0; i < x.length; i++) {
-            x[i] = i * sampleRate / tmpSignal.length;
+            double start = (double)hzStart / (double)sampleRate;
+            double percent = (double)i / (double)x.length;
+            double size = (double)hzWindowSize / (double)sampleRate;
+
+            x[i] = start + percent * size;
         }
         
         // plot
         Plot2DPanel plot = new Plot2DPanel();
-        plot.setLegendOrientation("EAST");
-        plot.addLegend("Cepstrum");
+//        plot.setLegendOrientation("EAST");
+//        plot.addLegend("Cepstrum");
         plot.addLinePlot("Cepstrum", x, y);
+        plot.setAxisLabel(0, "Quefrency [s]");
+        plot.setAxisLabel(1, "Amplituda");
 
         // frame
         JFrame frame = new JFrame("Cepstrum");
@@ -185,19 +192,16 @@ public class PlotUtil {
     public static void drawF0NormalDistribution(VoiceStressInstance instance) {
         // create gaussian function
         Gaussian gaussian = new Gaussian(instance.getMean(), instance.getStd());
-        
-        // get max - min
-        double diff = instance.getMax() - instance.getMin();
-        
+
         // number of values
-        int numValues = 1000;
+        int numValues = Config.plotNumValues;
         
         // create x array
         double[] x = new double[numValues];
         
         // calculate x values
         for(int i = 0; i < numValues; i++) {
-            x[i] = instance.getMin() + (((double)i / (double)numValues) * diff);
+            x[i] = (((double)i / (double)numValues) * Config.plotXMax);
         }
 
         // create y array

@@ -6,12 +6,12 @@ import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
  * MathUtil
  */
 public class MathUtil {
-    
+
     /**
      * find absolute max value in array
-     * 
+     *
      * @param arr
-     * @return 
+     * @return
      */
     public static double absMax(double[] arr) {
         double max = Math.abs(arr[0]);
@@ -29,9 +29,9 @@ public class MathUtil {
 
     /**
      * absMean
-     * 
+     *
      * @param signal
-     * @return 
+     * @return
      */
     public static double absMean(double[] arr) {
         double result = 0;
@@ -42,15 +42,15 @@ public class MathUtil {
 
             result += val / len;
         }
-        
+
         return result;
     }
 
     /**
      * max index in array
-     * 
+     *
      * @param arr
-     * @return 
+     * @return
      */
     public static int maxIndex(double[] arr) {
         double max = arr[0];
@@ -71,9 +71,9 @@ public class MathUtil {
 
     /**
      * find max value in array
-     * 
+     *
      * @param arr
-     * @return 
+     * @return
      */
     public static double max(double[] arr) {
         DescriptiveStatistics ds = new DescriptiveStatistics(arr);
@@ -82,20 +82,20 @@ public class MathUtil {
 
     /**
      * min
-     * 
+     *
      * @param arr
-     * @return 
+     * @return
      */
     public static double min(double[] arr) {
         DescriptiveStatistics ds = new DescriptiveStatistics(arr);
         return ds.getMin();
     }
-    
+
     /**
      * mean value of array
-     * 
+     *
      * @param arr
-     * @return 
+     * @return
      */
     public static double mean(double[] arr) {
         DescriptiveStatistics ds = new DescriptiveStatistics(arr);
@@ -104,31 +104,31 @@ public class MathUtil {
 
     /**
      * median
-     * 
+     *
      * @param arr
-     * @return 
+     * @return
      */
     public static double median(double[] arr) {
         DescriptiveStatistics ds = new DescriptiveStatistics(arr);
         return ds.getPercentile(50);
     }
-    
+
     /**
      * range
-     * 
+     *
      * @param arr
-     * @return 
+     * @return
      */
     public static double range(double[] arr) {
         DescriptiveStatistics ds = new DescriptiveStatistics(arr);
         return ds.getMax() - ds.getMin();
     }
-    
+
     /**
      * std
-     * 
+     *
      * @param arr
-     * @return 
+     * @return
      */
     public static double std(double[] arr) {
         DescriptiveStatistics ds = new DescriptiveStatistics(arr);
@@ -137,9 +137,9 @@ public class MathUtil {
 
     /**
      * lowQuantile
-     * 
+     *
      * @param arr
-     * @return 
+     * @return
      */
     public static double lowQuantile(double[] arr) {
         DescriptiveStatistics ds = new DescriptiveStatistics(arr);
@@ -148,9 +148,9 @@ public class MathUtil {
 
     /**
      * highQuantile
-     * 
+     *
      * @param arr
-     * @return 
+     * @return
      */
     public static double highQuantile(double[] arr) {
         DescriptiveStatistics ds = new DescriptiveStatistics(arr);
@@ -159,9 +159,9 @@ public class MathUtil {
 
     /**
      * iqr
-     * 
+     *
      * @param arr
-     * @return 
+     * @return
      */
     public static double iqr(double[] arr) {
         DescriptiveStatistics ds = new DescriptiveStatistics(arr);
@@ -170,9 +170,9 @@ public class MathUtil {
 
     /**
      * kurtosis
-     * 
+     *
      * @param arr
-     * @return 
+     * @return
      */
     public static double kurtosis(double[] arr) {
         DescriptiveStatistics ds = new DescriptiveStatistics(arr);
@@ -181,10 +181,10 @@ public class MathUtil {
 
     /**
      * calcMagnitudeDB
-     * 
+     *
      * @param re
      * @param im
-     * @return 
+     * @return
      */
     public static double calcMagnitudeDB(double re, double im) {
         return 20 * Math.log10(Math.hypot(re, im));
@@ -192,10 +192,10 @@ public class MathUtil {
 
     /**
      * calcMagnitudeDB2
-     * 
+     *
      * @param re
      * @param im
-     * @return 
+     * @return
      */
     public static double calcMagnitudeDB2(double re, double im) {
         return 10 * Math.log10(re * re + im * im);
