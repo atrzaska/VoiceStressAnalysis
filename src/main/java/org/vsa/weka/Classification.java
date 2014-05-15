@@ -1,8 +1,6 @@
 package org.vsa.weka;
 
 import org.vsa.WekaConfig;
-import org.vsa.gui.WekaOptions;
-import weka.attributeSelection.ASEvaluation;
 import weka.classifiers.Classifier;
 import weka.classifiers.Evaluation;
 import weka.classifiers.bayes.NaiveBayes;
@@ -176,7 +174,7 @@ public class Classification {
         Instances data = inst;
         String summary = "";
         WekaConfig conf = WekaConfig.getInstance();
-        String algorythm = conf.getAlgorythm();
+        String algorithm = conf.getAlgorithm();
         Classifier clas = null;
 
         if (conf.isFilterBool()) {
@@ -203,7 +201,7 @@ public class Classification {
             }
         }
 
-        switch (algorythm) {
+        switch (algorithm) {
             case "J48":
                 summary += "J48 \n";
                 clas = classifyJ48(data);
@@ -241,6 +239,7 @@ public class Classification {
                 clas = classifyKStar(data);
                 break;
         }
+        
         summary += "\n";
         summary += "---------Klasifikacja-------------- \n";
         summary += clas.toString();

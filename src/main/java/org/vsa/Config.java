@@ -6,7 +6,7 @@ package org.vsa;
 public class Config {
     
     /**
-     * allowedSampleRate
+     * allowedSampleRate - UNUSED
      * 
      * 8000 Hz
      */
@@ -76,7 +76,7 @@ public class Config {
     public static final int plotNumValues = 2000;
     
     /**
-     * Config.plotNumValues
+     * plotXMax
      */
     public static final int plotXMax = 500;
 }

@@ -230,7 +230,7 @@ public class MainWindow extends JFrame {
     }//GEN-LAST:event_mnuSummaryActionPerformed
 
     private void MenuOpcjeWekaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuOpcjeWekaActionPerformed
-        WekaOptions options = new WekaOptions();
+        WekaOptions options = new WekaOptions(this);
         options.setVisible(true);
     }//GEN-LAST:event_MenuOpcjeWekaActionPerformed
 

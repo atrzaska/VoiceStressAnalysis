@@ -1,9 +1,11 @@
 package org.vsa.gui.tasks;
 
 import java.awt.Cursor;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import org.vsa.Config;
@@ -40,49 +42,49 @@ public class GenerateArffTask extends SwingWorker<Void,Void> {
      */
     @Override
     protected Void doInBackground() throws Exception {
-        // set wait cursor
-        window.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-
-        // get selections
-        List<Object> selections = window.getSelectedInterrogations();
-
-        // create progress window
-        ProgressWindow progressWindow = new ProgressWindow(window);
-        progressWindow.setVisible(true);
-
-        // set max
-        progressWindow.setMaxValue(selections.size());
-
         try {
-            // iterate selections
-            for(int i = 0; i < selections.size(); i++) {
-                
-                // cast object
-                Interrogation interrogation = (Interrogation)selections.get(i);
 
-                // generate output path
-                String outputPath = Config.outputPath + FileUtil.generateArffFileName(interrogation.getName());
+            // get selections
+            Interrogation interrogation = window.getSelectedInterrogation();
+
+            // show save file dialog
+            JFileChooser fileChooser = new JFileChooser(Config.outputPath);
+
+            // suggest file name
+            fileChooser.setSelectedFile(new File(FileUtil.generateArffFileName(interrogation.getName())));
+
+            // generate output path
+//                String outputPath = Config.outputPath + FileUtil.generateArffFileName(interrogation.getName());
+
+            // show dialog
+            int result = fileChooser.showSaveDialog(window);
+
+            if(result == JFileChooser.APPROVE_OPTION) {
+                File file = fileChooser.getSelectedFile();
+
+                // set wait cursor
+                window.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+                // create progress window
+                ProgressWindow progressWindow = new ProgressWindow(window);
+                progressWindow.setIndeterminate(true);
+                progressWindow.setVisible(true);
 
                 // save arff
-                interrogation.generateArff(outputPath);
+                interrogation.generateArff(file.getPath());
 
-                // update progress
-                progressWindow.setValue(i+1);
+                // set default cursor
+                window.setCursor(null);
+
+                // close progress window
+                progressWindow.dispose();
             }
 
-            // show ok dialog
-            JOptionPane.showMessageDialog(window, "OK");
         } catch(IOException | UnsupportedAudioFileException | AudioException e) {
             
             // show exception message
             JOptionPane.showMessageDialog(window, e.getLocalizedMessage());
         }
-
-        // set default cursor
-        window.setCursor(null);
-
-        // close progress window
-        progressWindow.dispose();
 
         // return
         return null;

@@ -8,9 +8,6 @@ import org.vsa.gui.MainWindow;
 import org.vsa.gui.ProgressWindow;
 import org.vsa.gui.SummaryWindow;
 import org.vsa.weka.Classification;
-import org.vsa.weka.Evaluate;
-import weka.classifiers.Evaluation;
-import weka.classifiers.trees.J48;
 import weka.core.Instances;
 
 /**
@@ -59,6 +56,7 @@ public class ClassifyTask extends SwingWorker<Void,Void> {
             Classification classification = new Classification();
             
             String summary = classification.classifyMyInstances(instances);
+
 /*
             // create desired classifier
             J48 classifier = classification.classifyJ48(instances);
@@ -69,6 +67,7 @@ public class ClassifyTask extends SwingWorker<Void,Void> {
             // perform cross validation on 10 folds
             Evaluation evaluation = evaluate.crossValidation(classifier, instances, 10);
 */
+
             // create summary window
             SummaryWindow summaryWindow = new SummaryWindow(window);
             summaryWindow.setVisible(true);

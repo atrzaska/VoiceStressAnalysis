@@ -1,57 +1,85 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.vsa;
 
-import org.vsa.weka.Classification;
-import weka.classifiers.Classifier;
-
 /**
- *
- * @author mejsl_000
+ * WekaConfig
  */
 public final class WekaConfig {
 
+    /**
+     * algorithm
+     */
+    private String algorithm;
+    
+    /**
+     * filter
+     */
+    private String filter;
+    
+    /**
+     * filterBool
+     */
+    private boolean filterBool;
+    
+    /**
+     * folds
+     */
+    private int folds;
+
+    /**
+     * instance
+     */
     private static WekaConfig instance = new WekaConfig();
 
+    /**
+     * getInstance
+     * 
+     * @return 
+     */
     public static WekaConfig getInstance() {
         return instance;
     }
 
     /**
+     * setInstance
+     * 
      * @param aInstance the instance to set
      */
     public static void setInstance(WekaConfig aInstance) {
         instance = aInstance;
     }
 
+    /**
+     * Default constructor.
+     */
     private WekaConfig() {
         filterBool = false;
-        algorythm = "J48";
+        algorithm = "J48";
         filter = "CFS_BestFirst";
         folds = 10;
     }
 
-    private String algorythm;
-    private String filter;
-    private boolean filterBool;
-    private int folds;
-
-    public String getAlgorythm() {
-        return algorythm;
-    }
-
     /**
-     * @param algorythm the algorythm to set J48 Naive Bayes Lazy IBk Random
-     * Tree SMO PART Decision Table Multi Layer Kstar
+     * getAlgorithm
+     * 
+     * @return 
      */
-    public void setAlgorythm(String algorythm) {
-        this.algorythm = algorythm;
+    public String getAlgorithm() {
+        return algorithm;
     }
 
     /**
+     * setAlgorythm
+     * 
+     * @param algorithm the algorithm to set J48 Naive Bayes Lazy IBk Random
+ Tree SMO PART Decision Table Multi Layer Kstar
+     */
+    public void setAlgorithm(String algorithm) {
+        this.algorithm = algorithm;
+    }
+
+    /**
+     * getFilter
+     * 
      * @return the filter
      */
     public String getFilter() {
@@ -59,6 +87,8 @@ public final class WekaConfig {
     }
 
     /**
+     * setFilter
+     * 
      * @param filter the filter to set
      */
     public void setFilter(String filter) {
@@ -66,6 +96,8 @@ public final class WekaConfig {
     }
 
     /**
+     * isFilterBool
+     * 
      * @return the filterBool
      */
     public boolean isFilterBool() {
@@ -73,6 +105,8 @@ public final class WekaConfig {
     }
 
     /**
+     * setFilterBool
+     * 
      * @param filterBool the filterBool to set
      */
     public void setFilterBool(boolean filterBool) {
@@ -80,6 +114,8 @@ public final class WekaConfig {
     }
 
     /**
+     * getFolds
+     * 
      * @return the folds
      */
     public int getFolds() {
@@ -87,13 +123,11 @@ public final class WekaConfig {
     }
 
     /**
+     * setFolds
+     * 
      * @param folds the folds to set
      */
     public void setFolds(int folds) {
         this.folds = folds;
     }
-
-    /**
-     * @return the classification
-     */
 }

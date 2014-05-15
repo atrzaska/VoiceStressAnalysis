@@ -1,25 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package org.vsa.gui;
 
+import java.awt.Container;
+import javax.swing.JDialog;
 import org.vsa.WekaConfig;
 
 /**
- *
- * @author mejsl_000
+ * WekaOptions
  */
-public class WekaOptions extends javax.swing.JFrame {
+public class WekaOptions extends JDialog {
 
     /**
      * Creates new form WekaOptions
+     * 
+     * @param parent
      */
-    public WekaOptions() {
+    public WekaOptions(Container parent) {
         initComponents();
-        
+        this.setLocationRelativeTo(parent);
     }
 
     /**
@@ -42,6 +39,7 @@ public class WekaOptions extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Opcje");
 
         ComboBoxAlgorytmy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "J48", "Naive Bayes", "Lazy IBk", "Random Tree", "SMO", "PART", "Decision Table", "Multi Layer", "Kstar" }));
 
@@ -133,7 +131,7 @@ public class WekaOptions extends javax.swing.JFrame {
         
         wekaconf.setFilter(ComboBoxFiltry.getSelectedItem().toString());
         wekaconf.setFilterBool(CheckBoxFiltry.isSelected());
-        wekaconf.setAlgorythm(ComboBoxAlgorytmy.getSelectedItem().toString());
+        wekaconf.setAlgorithm(ComboBoxAlgorytmy.getSelectedItem().toString());
         wekaconf.setFolds(Integer.parseInt(TextFiledFolds.getText()));
         setVisible(false);
         dispose();
