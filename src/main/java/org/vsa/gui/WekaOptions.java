@@ -127,12 +127,12 @@ public class WekaOptions extends JDialog {
     }//GEN-LAST:event_comboboxFiltryitemchange
 
     private void ButtonAkcpetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonAkcpetMouseClicked
-        WekaConfig wekaconf = WekaConfig.getInstance();
+        WekaConfig wekaConfig = WekaConfig.getInstance();
         
-        wekaconf.setFilter(ComboBoxFiltry.getSelectedItem().toString());
-        wekaconf.setFilterBool(CheckBoxFiltry.isSelected());
-        wekaconf.setAlgorithm(ComboBoxAlgorytmy.getSelectedItem().toString());
-        wekaconf.setFolds(Integer.parseInt(TextFiledFolds.getText()));
+        wekaConfig.setFilter(ComboBoxFiltry.getSelectedItem().toString());
+        wekaConfig.setFilterBool(CheckBoxFiltry.isSelected());
+        wekaConfig.setAlgorithm(ComboBoxAlgorytmy.getSelectedItem().toString());
+        wekaConfig.setFolds(Integer.parseInt(TextFiledFolds.getText()));
         setVisible(false);
         dispose();
     }//GEN-LAST:event_ButtonAkcpetMouseClicked
