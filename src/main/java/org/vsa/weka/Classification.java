@@ -47,6 +47,7 @@ public class Classification {
 
     public IBk classifyIBk(Instances data) throws Exception {
         IBk ibk = new IBk();
+        ibk.setKNN(10);
         ibk.buildClassifier(data);
         return ibk;
     }
@@ -136,30 +137,30 @@ public class Classification {
         return star;
     }
 
-    public void classifyNewFromFile(Classifier train, Instances unlabeled) throws Exception {
+    public double classifyNewFromFile(Classifier train, Instances unlabeled) throws Exception {
 
         Instances labeled = new Instances(unlabeled);
-
+        double clsLabel = 3;
         for (int i = 0; i < labeled.numInstances(); i++) {
-            double clsLabel = train.classifyInstance(unlabeled.instance(i));
+            clsLabel = train.classifyInstance(unlabeled.instance(i));
             labeled.instance(i).setClassValue(clsLabel);
         }
-
-        System.out.println(labeled);
+        
+        return clsLabel;
     }
 
     public void classifyNewFromFileUsingModel(String path, Instances unlabeled) throws Exception {
 
         Classifier train = (Classifier) weka.core.SerializationHelper.read(path);
-
+        
         Instances labeled = new Instances(unlabeled);
-
+        double clsLabel = 0;
         for (int i = 0; i < labeled.numInstances(); i++) {
-            double clsLabel = train.classifyInstance(unlabeled.instance(i));
+            clsLabel = train.classifyInstance(unlabeled.instance(i));
             labeled.instance(i).setClassValue(clsLabel);
         }
 
-        System.out.println(labeled);
+        System.out.println("Wyswietl instancje " + clsLabel);
     }
 
     /*
@@ -170,6 +171,55 @@ public class Classification {
      Consistency greedy
      Consistency best first
      */
+    public Classifier classifyForModel(Instances inst) throws Exception {
+
+        Instances data = inst;
+        String summary = "";
+        WekaConfig conf = WekaConfig.getInstance();
+        String algorithm = conf.getAlgorithm();
+        Classifier clas = null;
+
+        switch (algorithm) {
+            case "J48":
+                summary += "J48 \n";
+                clas = classifyJ48(data);
+                break;
+            case "Naive Bayes":
+                summary += "Naive Bayes \n";
+                clas = classifyNaiveBayes(data);
+                break;
+            case "Lazy IBk":
+                summary += "Lazy IBk \n";
+                clas = classifyIBk(data);
+                break;
+            case "Random Tree":
+                summary += "Random Tree \n";
+                clas = classifyRandomTree(data);
+                break;
+            case "SMO":
+                summary += "SMO \n";
+                clas = classifySMO(data);
+                break;
+            case "PART":
+                summary += "PART \n";
+                clas = classifyPART(data);
+                break;
+            case "Decision Table":
+                summary += "Decision Table \n";
+                clas = classifyDecisionTable(data);
+                break;
+            case "Multi Layer":
+                summary += "Multi Layer \n";
+                clas = classifyMultiLayer(data);
+                break;
+            case "Kstar":
+                summary += "Kstar \n";
+                clas = classifyKStar(data);
+                break;
+        }
+        return clas;
+    }
+
     public String classifyMyInstances(Instances inst) throws Exception {
         Instances data = inst;
         String summary = "";
@@ -239,7 +289,7 @@ public class Classification {
                 clas = classifyKStar(data);
                 break;
         }
-        
+
         summary += "\n";
         summary += "---------Klasifikacja-------------- \n";
         summary += clas.toString();

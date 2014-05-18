@@ -3,15 +3,21 @@ package org.vsa.gui;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import org.vsa.api.Interrogation;
 import org.vsa.api.VsaSystem;
 import org.vsa.gui.listmodels.InterrogationListModel;
 import org.vsa.gui.tasks.ClassifyTask;
 import org.vsa.gui.tasks.GenerateArffTask;
+import org.vsa.gui.tasks.SaveModelTask;
 import org.vsa.gui.tasks.ShowInterrogationDetailsTask;
 import org.vsa.gui.tasks.ShowSummaryTask;
+import org.vsa.weka.DataSet;
 
 /**
  * MainWindow
@@ -83,6 +89,7 @@ public class MainWindow extends JFrame {
         mnuDetails = new javax.swing.JMenuItem();
         mnuClassify = new javax.swing.JMenuItem();
         mnuGenerateArff = new javax.swing.JMenuItem();
+        generateModel = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         MenuOpcjeWeka = new javax.swing.JMenuItem();
 
@@ -160,6 +167,14 @@ public class MainWindow extends JFrame {
         });
         mnuAction.add(mnuGenerateArff);
 
+        generateModel.setText("Generuj model");
+        generateModel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateModelActionPerformed(evt);
+            }
+        });
+        mnuAction.add(generateModel);
+
         jMenuBar1.add(mnuAction);
 
         jMenu1.setText("Opcje");
@@ -196,13 +211,8 @@ public class MainWindow extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuNewInterrogationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuNewInterrogationActionPerformed
-        try {
-            throw new Exception("Feature not implemented.");
-        } catch(Exception e) {
-            
-            // show exception message
-            JOptionPane.showMessageDialog(this, e.getLocalizedMessage());
-        }
+        FileChose fc = new FileChose();
+        fc.setVisible(true);
     }//GEN-LAST:event_mnuNewInterrogationActionPerformed
 
     private void mnuGenerateArffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuGenerateArffActionPerformed
@@ -234,8 +244,18 @@ public class MainWindow extends JFrame {
         options.setVisible(true);
     }//GEN-LAST:event_MenuOpcjeWekaActionPerformed
 
+    private void generateModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateModelActionPerformed
+        SaveModelTask task = new SaveModelTask(this);
+        try {
+            task.execute();
+        } catch (Exception ex) {
+            
+        }
+    }//GEN-LAST:event_generateModelActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuOpcjeWeka;
+    private javax.swing.JMenuItem generateModel;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;

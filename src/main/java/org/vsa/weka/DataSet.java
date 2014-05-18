@@ -39,6 +39,10 @@ public class DataSet {
     public void saveModel(String path, Classifier classifier) throws Exception {
         weka.core.SerializationHelper.write(path, classifier);
     }
+    
+    public Classifier loadModel(String path ) throws Exception {
+        return (Classifier) weka.core.SerializationHelper.read(path);
+    }
 
     /**
      * createInstances
