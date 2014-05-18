@@ -3,12 +3,7 @@ package org.vsa.gui;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import org.vsa.api.Interrogation;
 import org.vsa.api.VsaSystem;
 import org.vsa.gui.listmodels.InterrogationListModel;
@@ -17,7 +12,6 @@ import org.vsa.gui.tasks.GenerateArffTask;
 import org.vsa.gui.tasks.SaveModelTask;
 import org.vsa.gui.tasks.ShowInterrogationDetailsTask;
 import org.vsa.gui.tasks.ShowSummaryTask;
-import org.vsa.weka.DataSet;
 
 /**
  * MainWindow
@@ -82,9 +76,9 @@ public class MainWindow extends JFrame {
         lbInterrogations = new javax.swing.JList();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuFile = new javax.swing.JMenu();
+        mnuClassifyFile = new javax.swing.JMenuItem();
         mnuExit = new javax.swing.JMenuItem();
         mnuAction = new javax.swing.JMenu();
-        mnuNewInterrogation = new javax.swing.JMenuItem();
         mnuSummary = new javax.swing.JMenuItem();
         mnuDetails = new javax.swing.JMenuItem();
         mnuClassify = new javax.swing.JMenuItem();
@@ -115,6 +109,14 @@ public class MainWindow extends JFrame {
 
         mnuFile.setText("Plik");
 
+        mnuClassifyFile.setText("Klasyfikuj plik");
+        mnuClassifyFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuClassifyFileActionPerformed(evt);
+            }
+        });
+        mnuFile.add(mnuClassifyFile);
+
         mnuExit.setText("Wyjście");
         mnuExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,14 +128,6 @@ public class MainWindow extends JFrame {
         jMenuBar1.add(mnuFile);
 
         mnuAction.setText("Akcja");
-
-        mnuNewInterrogation.setText("Nowe przesłuchanie");
-        mnuNewInterrogation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuNewInterrogationActionPerformed(evt);
-            }
-        });
-        mnuAction.add(mnuNewInterrogation);
 
         mnuSummary.setText("Podsumowanie");
         mnuSummary.addActionListener(new java.awt.event.ActionListener() {
@@ -210,11 +204,6 @@ public class MainWindow extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mnuNewInterrogationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuNewInterrogationActionPerformed
-        FileChose fc = new FileChose();
-        fc.setVisible(true);
-    }//GEN-LAST:event_mnuNewInterrogationActionPerformed
-
     private void mnuGenerateArffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuGenerateArffActionPerformed
         GenerateArffTask task = new GenerateArffTask(this);
         task.execute();
@@ -246,12 +235,13 @@ public class MainWindow extends JFrame {
 
     private void generateModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateModelActionPerformed
         SaveModelTask task = new SaveModelTask(this);
-        try {
-            task.execute();
-        } catch (Exception ex) {
-            
-        }
+        task.execute();
     }//GEN-LAST:event_generateModelActionPerformed
+
+    private void mnuClassifyFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuClassifyFileActionPerformed
+        FileChose fileChose = new FileChose(this);
+        fileChose.setVisible(true);
+    }//GEN-LAST:event_mnuClassifyFileActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuOpcjeWeka;
@@ -263,11 +253,11 @@ public class MainWindow extends JFrame {
     private javax.swing.JList lbInterrogations;
     private javax.swing.JMenu mnuAction;
     private javax.swing.JMenuItem mnuClassify;
+    private javax.swing.JMenuItem mnuClassifyFile;
     private javax.swing.JMenuItem mnuDetails;
     private javax.swing.JMenuItem mnuExit;
     private javax.swing.JMenu mnuFile;
     private javax.swing.JMenuItem mnuGenerateArff;
-    private javax.swing.JMenuItem mnuNewInterrogation;
     private javax.swing.JMenuItem mnuSummary;
     // End of variables declaration//GEN-END:variables
 }

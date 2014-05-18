@@ -109,6 +109,22 @@ public class Interrogation {
         return instanceList;
     }
 
+    public static Instances getFileInstance(String file) throws IOException, UnsupportedAudioFileException, AudioException {
+        // create output list
+        VoiceStressInstanceList instanceList = new VoiceStressInstanceList();
+
+        // set name
+        instanceList.setName("test");
+
+        // process sound file
+        VoiceStressInstance instance = VoiceStressInstance.fromSoundFile(file);
+
+        // add instance to array
+        instanceList.addInstance(instance);
+
+        // return
+        return instanceList.toWekaInstances();
+    }
     /**
      * toWekaInstances
      * 

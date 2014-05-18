@@ -31,6 +31,16 @@ public final class WekaConfig {
     private static WekaConfig instance = new WekaConfig();
 
     /**
+     * Default constructor.
+     */
+    private WekaConfig() {
+        filterBool = false;
+        algorithm = "J48";
+        filter = "CFS_BestFirst";
+        folds = 10;
+    }
+
+    /**
      * getInstance
      * 
      * @return 
@@ -49,16 +59,6 @@ public final class WekaConfig {
     }
 
     /**
-     * Default constructor.
-     */
-    private WekaConfig() {
-        filterBool = false;
-        algorithm = "J48";
-        filter = "CFS_BestFirst";
-        folds = 10;
-    }
-
-    /**
      * getAlgorithm
      * 
      * @return 
@@ -71,7 +71,7 @@ public final class WekaConfig {
      * setAlgorythm
      * 
      * @param algorithm the algorithm to set J48 Naive Bayes Lazy IBk Random
- Tree SMO PART Decision Table Multi Layer Kstar
+     * Tree SMO PART Decision Table Multi Layer Kstar
      */
     public void setAlgorithm(String algorithm) {
         this.algorithm = algorithm;

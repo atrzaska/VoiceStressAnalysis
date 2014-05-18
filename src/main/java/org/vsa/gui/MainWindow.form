@@ -9,6 +9,14 @@
             <Property name="text" type="java.lang.String" value="Plik"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuClassifyFile">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Klasyfikuj plik"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuClassifyFileActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuExit">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Wyj&#x15b;cie"/>
@@ -24,14 +32,6 @@
             <Property name="text" type="java.lang.String" value="Akcja"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mnuNewInterrogation">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Nowe przes&#x142;uchanie"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuNewInterrogationActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuSummary">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Podsumowanie"/>

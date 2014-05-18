@@ -24,6 +24,16 @@ public class FileUtil {
     }
 
     /**
+     * generateModelFileName
+     * 
+     * @param name
+     * @return 
+     */
+    public static String generateModelFileName(String name) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        return name + "-" + simpleDateFormat.format(new Date()) + ".model";
+    }
+    /**
      * listFilesForFolder
      * 
      * @param folderPath

@@ -1,33 +1,38 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.vsa.gui;
 
+import java.awt.Component;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.vsa.Config;
 import org.vsa.weka.Classification;
 import org.vsa.weka.DataSet;
 import org.vsa.weka.VoiceStressInstance;
 import org.vsa.weka.VoiceStressInstanceList;
 import weka.classifiers.Classifier;
-import weka.core.Instance;
 import weka.core.Instances;
 
 /**
- *
- * @author mejsl_000
+ * FileChose
  */
-public class FileChose extends javax.swing.JFrame {
+public class FileChose extends javax.swing.JDialog {
+
+    private final JFileChooser fcm = new JFileChooser(Config.outputPath);
+    private final JFileChooser fcf = new JFileChooser(Config.wavPath);
+    private int result1;
+    private int result2;
+    private FileNameExtensionFilter filter;
 
     /**
      * Creates new form FileChose
+     * 
+     * @param parent
      */
-    public FileChose() {
+    public FileChose(Component parent) {
         initComponents();
+        this.setLocationRelativeTo(parent);
     }
 
     /**
@@ -49,6 +54,7 @@ public class FileChose extends javax.swing.JFrame {
         CancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Klasyfikacja nagrania");
 
         ModelButton.setText("Wybierz");
         ModelButton.setToolTipText("");
@@ -139,18 +145,12 @@ public class FileChose extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    JFileChooser fcm = new JFileChooser();
-    JFileChooser fcf = new JFileChooser();
-    int result1;
-    int result2;
-    FileNameExtensionFilter filter;
-    Instances inst;
-
     private void ModelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModelButtonActionPerformed
 
         filter = new FileNameExtensionFilter("Model", "model");
         fcm.setFileFilter(filter);
         result1 = fcm.showOpenDialog(null);
+
         if (result1 == JFileChooser.APPROVE_OPTION) {
             File plik = fcm.getSelectedFile();
             ModelLabel.setText(plik.getAbsolutePath());
@@ -159,6 +159,7 @@ public class FileChose extends javax.swing.JFrame {
 
     private void FileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FileButtonActionPerformed
         int result2 = fcf.showOpenDialog(null);
+
         if (result2 == JFileChooser.APPROVE_OPTION) {
             File plik = fcf.getSelectedFile();
             FileLable.setText(plik.getAbsolutePath());
@@ -170,6 +171,7 @@ public class FileChose extends javax.swing.JFrame {
         if (result1 == JFileChooser.APPROVE_OPTION && result2 == JFileChooser.APPROVE_OPTION) {
             VoiceStressInstanceList vsilist = new VoiceStressInstanceList();
             vsilist.setName("nazwa");
+
             try {
                 VoiceStressInstance vsi = VoiceStressInstance.fromSoundFile(fcf.getSelectedFile().getAbsolutePath());
                 vsilist.addInstance(vsi);
@@ -178,7 +180,9 @@ public class FileChose extends javax.swing.JFrame {
                 DataSet data = new DataSet();
                 Classifier clsa = data.loadModel(fcm.getSelectedFile().getAbsolutePath());
                 //System.out.println(inst.toString());
+                
                 double wynik = cls.classifyNewFromFile(clsa, inst);
+
                 if(wynik == 0.0){
                     JOptionPane.showMessageDialog(rootPane, "Wykryto stres w głosie");
                 } else if (wynik == 1.0){
@@ -187,8 +191,6 @@ public class FileChose extends javax.swing.JFrame {
             } catch (Exception ex) {
                 System.out.println(ex);
             }
-            //setVisible(false);
-            //dispose();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Wybierz model oraz nagranie");
         }

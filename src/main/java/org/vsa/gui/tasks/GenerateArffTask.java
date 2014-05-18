@@ -3,7 +3,6 @@ package org.vsa.gui.tasks;
 import java.awt.Cursor;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -52,9 +51,6 @@ public class GenerateArffTask extends SwingWorker<Void,Void> {
 
             // suggest file name
             fileChooser.setSelectedFile(new File(FileUtil.generateArffFileName(interrogation.getName())));
-
-            // generate output path
-//                String outputPath = Config.outputPath + FileUtil.generateArffFileName(interrogation.getName());
 
             // show dialog
             int result = fileChooser.showSaveDialog(window);
