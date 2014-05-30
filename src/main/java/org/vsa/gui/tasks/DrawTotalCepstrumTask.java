@@ -49,7 +49,7 @@ public class DrawTotalCepstrumTask extends SwingWorker<Void,Void> {
             VoiceStressAnalyser vsa = new VoiceStressAnalyser(vsi.getPath());
 
             // draw it!
-            PlotUtil.drawCepstrum(vsa.getSignal(), vsa.getSampleRate(),
+            PlotUtil.drawCepstrum(window, vsa.getSignal(), vsa.getSampleRate(),
                     vsa.getHzStart(), vsa.getHzWindowSize());
         } catch(IOException | UnsupportedAudioFileException | AudioException e) {
             

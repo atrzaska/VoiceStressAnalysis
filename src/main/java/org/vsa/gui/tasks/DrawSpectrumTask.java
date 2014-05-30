@@ -49,7 +49,7 @@ public class DrawSpectrumTask extends SwingWorker<Void,Void> {
             VoiceStressAnalyser vsa = new VoiceStressAnalyser(vsi.getPath());
 
             // draw it!
-            PlotUtil.drawSpectrum(vsa.getSignal(), vsa.getSampleRate());
+            PlotUtil.drawSpectrum(window, vsa.getSignal(), vsa.getSampleRate());
         } catch(IOException | UnsupportedAudioFileException | AudioException e) {
             
             // show exception message

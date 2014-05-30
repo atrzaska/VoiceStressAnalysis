@@ -161,7 +161,7 @@ public class Interrogation {
      */
     public String toSummaryString() {
         return "Nazwa przesłuchania: " + this.getName() + "\n" +
-                "Liczba plików dźwiękowych" + this.numFiles();
+                "Liczba plików dźwiękowych: " + this.numFiles();
     }
 
     /**

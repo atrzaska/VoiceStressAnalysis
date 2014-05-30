@@ -77,6 +77,21 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="mnuPomoce">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Pomoce"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuShowFullCepstrum">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Poka&#x17c; pe&#x142;ne cepstrum"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuShowFullCepstrumActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>

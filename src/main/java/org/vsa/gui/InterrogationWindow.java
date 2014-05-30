@@ -6,6 +6,7 @@ import javax.swing.JDialog;
 import org.vsa.api.Interrogation;
 import org.vsa.audio.AudioException;
 import org.vsa.gui.listmodels.VoiceStressInstanceListModel;
+import org.vsa.gui.tasks.DrawFullTotalCepstrumTask;
 import org.vsa.gui.tasks.DrawFundamentalFrequencyVectorTask;
 import org.vsa.gui.tasks.DrawSpectrumTask;
 import org.vsa.gui.tasks.DrawTotalCepstrumTask;
@@ -78,6 +79,8 @@ public class InterrogationWindow extends JDialog {
         mnuShowF0 = new javax.swing.JMenuItem();
         mnuShowDistribution = new javax.swing.JMenuItem();
         mnuDetails = new javax.swing.JMenuItem();
+        mnuPomoce = new javax.swing.JMenu();
+        mnuShowFullCepstrum = new javax.swing.JMenuItem();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -156,6 +159,18 @@ public class InterrogationWindow extends JDialog {
 
         jMenuBar2.add(jMenu4);
 
+        mnuPomoce.setText("Pomoce");
+
+        mnuShowFullCepstrum.setText("Pokaż pełne cepstrum");
+        mnuShowFullCepstrum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuShowFullCepstrumActionPerformed(evt);
+            }
+        });
+        mnuPomoce.add(mnuShowFullCepstrum);
+
+        jMenuBar2.add(mnuPomoce);
+
         setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -206,6 +221,11 @@ public class InterrogationWindow extends JDialog {
         task.execute();
     }//GEN-LAST:event_mnuShowCepstrumActionPerformed
 
+    private void mnuShowFullCepstrumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuShowFullCepstrumActionPerformed
+        DrawFullTotalCepstrumTask task = new DrawFullTotalCepstrumTask(this);
+        task.execute();
+    }//GEN-LAST:event_mnuShowFullCepstrumActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -216,9 +236,11 @@ public class InterrogationWindow extends JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList lbRecordings;
     private javax.swing.JMenuItem mnuDetails;
+    private javax.swing.JMenu mnuPomoce;
     private javax.swing.JMenuItem mnuShowCepstrum;
     private javax.swing.JMenuItem mnuShowDistribution;
     private javax.swing.JMenuItem mnuShowF0;
+    private javax.swing.JMenuItem mnuShowFullCepstrum;
     private javax.swing.JMenuItem mnuShowSpectrum;
     private javax.swing.JMenuItem mnuShowWaveform;
     // End of variables declaration//GEN-END:variables

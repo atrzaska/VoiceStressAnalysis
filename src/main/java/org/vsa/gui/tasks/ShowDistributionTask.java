@@ -37,7 +37,7 @@ public class ShowDistributionTask extends SwingWorker<Void,Void> {
         window.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
         try {
-            PlotUtil.drawF0NormalDistribution(window.getSelectedInstance());
+            PlotUtil.drawF0NormalDistribution(window, window.getSelectedInstance());
         } catch(Exception e) {
             
             // show exception message

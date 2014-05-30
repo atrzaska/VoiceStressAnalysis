@@ -10,8 +10,11 @@ import org.vsa.gui.listmodels.InterrogationListModel;
 import org.vsa.gui.tasks.ClassifyTask;
 import org.vsa.gui.tasks.GenerateArffTask;
 import org.vsa.gui.tasks.SaveModelTask;
+import org.vsa.gui.tasks.ShowExperimentSummaryTask;
 import org.vsa.gui.tasks.ShowInterrogationDetailsTask;
+import org.vsa.gui.tasks.ShowStressedInstancesDistribution;
 import org.vsa.gui.tasks.ShowSummaryTask;
+import org.vsa.gui.tasks.ShowUnstressedInstancesDistribution;
 
 /**
  * MainWindow
@@ -86,6 +89,10 @@ public class MainWindow extends JFrame {
         generateModel = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         MenuOpcjeWeka = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        mnuStressedExperimentSummary = new javax.swing.JMenuItem();
+        mnuDrawStressedDistribution = new javax.swing.JMenuItem();
+        mnuDrawUnstressedDistribution = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VSA");
@@ -183,6 +190,34 @@ public class MainWindow extends JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setText("Eksperyment");
+
+        mnuStressedExperimentSummary.setText("Pokaż wyniki analizy");
+        mnuStressedExperimentSummary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuStressedExperimentSummaryActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mnuStressedExperimentSummary);
+
+        mnuDrawStressedDistribution.setText("Rozkład normalny głosu zestresowanego");
+        mnuDrawStressedDistribution.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuDrawStressedDistributionActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mnuDrawStressedDistribution);
+
+        mnuDrawUnstressedDistribution.setText("Rozkład normalny głosu niezestresowanego");
+        mnuDrawUnstressedDistribution.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuDrawUnstressedDistributionActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mnuDrawUnstressedDistribution);
+
+        jMenuBar1.add(jMenu2);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -243,10 +278,26 @@ public class MainWindow extends JFrame {
         fileChose.setVisible(true);
     }//GEN-LAST:event_mnuClassifyFileActionPerformed
 
+    private void mnuStressedExperimentSummaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuStressedExperimentSummaryActionPerformed
+        ShowExperimentSummaryTask task = new ShowExperimentSummaryTask(this);
+        task.execute();
+    }//GEN-LAST:event_mnuStressedExperimentSummaryActionPerformed
+
+    private void mnuDrawStressedDistributionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDrawStressedDistributionActionPerformed
+        ShowStressedInstancesDistribution task = new ShowStressedInstancesDistribution(this);
+        task.execute();
+    }//GEN-LAST:event_mnuDrawStressedDistributionActionPerformed
+
+    private void mnuDrawUnstressedDistributionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDrawUnstressedDistributionActionPerformed
+        ShowUnstressedInstancesDistribution task = new ShowUnstressedInstancesDistribution(this);
+        task.execute();
+    }//GEN-LAST:event_mnuDrawUnstressedDistributionActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuOpcjeWeka;
     private javax.swing.JMenuItem generateModel;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -255,9 +306,12 @@ public class MainWindow extends JFrame {
     private javax.swing.JMenuItem mnuClassify;
     private javax.swing.JMenuItem mnuClassifyFile;
     private javax.swing.JMenuItem mnuDetails;
+    private javax.swing.JMenuItem mnuDrawStressedDistribution;
+    private javax.swing.JMenuItem mnuDrawUnstressedDistribution;
     private javax.swing.JMenuItem mnuExit;
     private javax.swing.JMenu mnuFile;
     private javax.swing.JMenuItem mnuGenerateArff;
+    private javax.swing.JMenuItem mnuStressedExperimentSummary;
     private javax.swing.JMenuItem mnuSummary;
     // End of variables declaration//GEN-END:variables
 }

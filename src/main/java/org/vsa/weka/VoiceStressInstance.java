@@ -2,7 +2,6 @@ package org.vsa.weka;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintStream;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import org.vsa.api.VoiceStressAnalyser;
 import org.vsa.audio.AudioException;

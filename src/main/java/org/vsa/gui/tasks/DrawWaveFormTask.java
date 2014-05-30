@@ -49,7 +49,7 @@ public class DrawWaveFormTask extends SwingWorker<Void,Void> {
             VoiceStressAnalyser vsa = new VoiceStressAnalyser(vsi.getPath());
 
             // draw it!
-            PlotUtil.drawWaveForm(vsa.getSignal(), vsa.getSampleRate());
+            PlotUtil.drawWaveForm(window, vsa.getSignal(), vsa.getSampleRate());
         } catch(IOException | UnsupportedAudioFileException | AudioException e) {
             
             // show exception message

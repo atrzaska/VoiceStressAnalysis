@@ -44,7 +44,7 @@ public class DrawFundamentalFrequencyVectorTask extends SwingWorker<Void,Void> {
             double[] f0vector = window.getSelectedInstance().getFundamentalFrequencyVector();
             
             // draw it!
-            PlotUtil.drawFundamentalFrequencyVector(f0vector);
+            PlotUtil.drawFundamentalFrequencyVector(window, f0vector);
         } catch(IOException | UnsupportedAudioFileException | AudioException e) {
             
             // show exception message

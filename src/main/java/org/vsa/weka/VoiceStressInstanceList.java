@@ -32,6 +32,54 @@ public class VoiceStressInstanceList {
         return instances.size();
     }
 
+    public List<VoiceStressInstance> getStressedInstances() {
+        List<VoiceStressInstance> output = new ArrayList<>();
+
+        for(VoiceStressInstance instance : instances) {
+            if(instance.isStressed()) {
+                output.add(instance);
+            }
+        }
+
+        return output;
+    }
+
+    public List<VoiceStressInstance> getUnstressedInstances() {
+        List<VoiceStressInstance> output = new ArrayList<>();
+
+        for(VoiceStressInstance instance : instances) {
+            if(!instance.isStressed()) {
+                output.add(instance);
+            }
+        }
+
+        return output;
+    }
+
+    public int numStressedInstances() {
+        int val = 0;
+
+        for(VoiceStressInstance instance : instances) {
+            if(instance.isStressed()) {
+                val++;
+            }
+        }
+
+        return val;
+    }
+    
+    public int numUnstressedInstances() {
+        int val = 0;
+
+        for(VoiceStressInstance instance : instances) {
+            if(!instance.isStressed()) {
+                val++;
+            }
+        }
+
+        return val;
+    }
+
     /**
      * getInstance
      * 
