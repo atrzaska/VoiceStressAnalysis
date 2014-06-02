@@ -5,6 +5,7 @@
 unused/
 output/
 target/
+bin/
 # Package Files #
 *.war
 *.ear
