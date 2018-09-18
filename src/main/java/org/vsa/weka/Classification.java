@@ -145,14 +145,14 @@ public class Classification {
             clsLabel = train.classifyInstance(unlabeled.instance(i));
             labeled.instance(i).setClassValue(clsLabel);
         }
-        
+
         return clsLabel;
     }
 
     public void classifyNewFromFileUsingModel(String path, Instances unlabeled) throws Exception {
 
         Classifier train = (Classifier) weka.core.SerializationHelper.read(path);
-        
+
         Instances labeled = new Instances(unlabeled);
         double clsLabel = 0;
         for (int i = 0; i < labeled.numInstances(); i++) {
@@ -164,7 +164,7 @@ public class Classification {
     }
 
     /*
-     CSF greedy 
+     CSF greedy
      CSF best first
      Filtered CSF greedy
      Filtered CSF best first
@@ -291,11 +291,11 @@ public class Classification {
         }
 
         summary += "\n";
-        summary += "---------Klasifikacja-------------- \n";
+        summary += "---------Classification-------------- \n";
         summary += clas.toString();
         Evaluate eval = new Evaluate();
         Evaluation evalu = eval.crossValidation(clas, data, conf.getFolds());
-        summary += "----------Ewaluacja---------------- \n";
+        summary += "----------Evaluation---------------- \n";
         summary += evalu.toSummaryString();
         summary += evalu.toMatrixString();
 

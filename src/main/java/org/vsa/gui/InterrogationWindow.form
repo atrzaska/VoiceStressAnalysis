@@ -24,12 +24,12 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Akcja"/>
+            <Property name="text" type="java.lang.String" value="Action"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="mnuShowWaveform">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Poka&#x17c; nagranie"/>
+                <Property name="text" type="java.lang.String" value="Show recording"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuShowWaveformActionPerformed"/>
@@ -37,7 +37,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuShowSpectrum">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Poka&#x17c; spektrum"/>
+                <Property name="text" type="java.lang.String" value="Show spectrum"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuShowSpectrumActionPerformed"/>
@@ -45,7 +45,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuShowCepstrum">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Poka&#x17c; cepstrum"/>
+                <Property name="text" type="java.lang.String" value="Show cepstrum"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuShowCepstrumActionPerformed"/>
@@ -53,7 +53,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuShowF0">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Poka&#x17c; ton fundamentalny"/>
+                <Property name="text" type="java.lang.String" value="Show fundamental tone"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuShowF0ActionPerformed"/>
@@ -61,7 +61,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuShowDistribution">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Poka&#x17c; rozk&#x142;ad tonu fundamentalnego"/>
+                <Property name="text" type="java.lang.String" value="Show fundamental tone distribution"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuShowDistributionActionPerformed"/>
@@ -69,7 +69,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuDetails">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Szczeg&#xf3;&#x142;y"/>
+                <Property name="text" type="java.lang.String" value="Details"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuDetailsActionPerformed"/>
@@ -79,12 +79,12 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuPomoce">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Pomoce"/>
+            <Property name="text" type="java.lang.String" value="Help"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="mnuShowFullCepstrum">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Poka&#x17c; pe&#x142;ne cepstrum"/>
+                <Property name="text" type="java.lang.String" value="Show full cepstrum"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuShowFullCepstrumActionPerformed"/>
@@ -97,7 +97,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="Szczeg&#xf3;&#x142;y"/>
+    <Property name="title" type="java.lang.String" value="Details"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar2"/>
@@ -142,7 +142,7 @@
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder>
               <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Odpowiedzi"/>
+                <TitledBorder title="Answers"/>
               </Border>
             </TitledBorder>
           </Border>

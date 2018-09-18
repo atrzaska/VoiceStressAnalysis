@@ -1,3 +1,17 @@
 VoiceStressAnalysis
 ===================
-Aby uruchomiæ aplikacjê nale¿y wykonaæ komendê java -jar bin/vsa-1.0.jar
+# Dependencies
+
+- Maven
+
+# Compilation
+
+    mvn clean
+    mvn package
+
+# Running the application
+
+To start the application please run the following command:
+
+    java -jar bin/vsa-1.0.jar
+

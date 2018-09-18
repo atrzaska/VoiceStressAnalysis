@@ -13,9 +13,9 @@ public class PlotUtil {
 
     /**
      * createTimeVector
-     * 
+     *
      * @param y
-     * @return 
+     * @return
      */
     private static double[] createTimeVector(double[] y, int sampleRate) {
         double[] vector = new double[y.length];
@@ -30,12 +30,12 @@ public class PlotUtil {
 
     /**
      * drawWaveForm
-     * 
+     *
      * @param parent
      * @param signal
      * @param sampleRate
      * @throws IllegalArgumentException
-     * @throws IOException 
+     * @throws IOException
      */
     public static void drawWaveForm(Window parent, double[] signal, int sampleRate) throws IllegalArgumentException, IOException {
         // create time vector
@@ -44,29 +44,29 @@ public class PlotUtil {
         // plot
         Plot2DPanel plot = new Plot2DPanel();
 //        plot.setLegendOrientation("EAST");
-//        plot.addLegend("Nagranie");
-        plot.addLinePlot("Nagranie", x, signal);
-        plot.setAxisLabel(0, "Czas [s]");
-        plot.setAxisLabel(1, "Amplituda");
+//        plot.addLegend("Recording");
+        plot.addLinePlot("Recording", x, signal);
+        plot.setAxisLabel(0, "Time [s]");
+        plot.setAxisLabel(1, "Amplitude");
 
         // frame
-        JDialog window = new JDialog(parent, "Nagranie");
+        JDialog window = new JDialog(parent, "Recording");
         window.setSize(600, 600);
         window.setContentPane(plot);
         window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         window.setLocationRelativeTo(parent);
         window.setVisible(true);
-        
+
     }
 
     /**
      * drawSpectrum
-     * 
+     *
      * @param parent
      * @param signal
      * @param sampleRate
      * @throws IllegalArgumentException
-     * @throws IOException 
+     * @throws IOException
      */
     public static void drawSpectrum(Window parent, double[] signal, int sampleRate) throws IllegalArgumentException, IOException {
         // calculate range
@@ -97,7 +97,7 @@ public class PlotUtil {
 //        plot.addLegend("Spectrum");
         plot.addLinePlot("Spectrum", x, spectrum);
         plot.setAxisLabel(0, "Frequency [Hz]");
-        plot.setAxisLabel(1, "Natężenie");
+        plot.setAxisLabel(1, "Intensity");
 
         // window
         JDialog window = new JDialog(parent, "Spectrum");
@@ -110,22 +110,22 @@ public class PlotUtil {
 
     /**
      * drawCepstrum
-     * 
+     *
      * @param parent
      * @param signal
      * @param sampleRate
      * @param hzStart
      * @param hzWindowSize
      * @throws IllegalArgumentException
-     * @throws IOException 
+     * @throws IOException
      */
     public static void drawCepstrum(Window parent, double[] signal, int sampleRate, int hzStart, int hzWindowSize) throws IllegalArgumentException, IOException {
         // create temp samples array
         double[] tmpSignal = new double[signal.length];
-        
+
         // copy signal
         System.arraycopy(signal, 0, tmpSignal, 0, signal.length);
-        
+
         // apply window on temp signal
         SoundWindowUtil.applyHammingWindow(tmpSignal);
 
@@ -149,14 +149,14 @@ public class PlotUtil {
 
             x[i] = start + percent * size;
         }
-        
+
         // plot
         Plot2DPanel plot = new Plot2DPanel();
 //        plot.setLegendOrientation("EAST");
 //        plot.addLegend("Cepstrum");
         plot.addLinePlot("Cepstrum", x, y);
         plot.setAxisLabel(0, "Quefrency [s]");
-        plot.setAxisLabel(1, "Amplituda");
+        plot.setAxisLabel(1, "Amplitude");
 
         // window
         JDialog window = new JDialog(parent, "Cepstrum");
@@ -169,22 +169,22 @@ public class PlotUtil {
 
     /**
      * drawCepstrum
-     * 
+     *
      * @param parent
      * @param signal
      * @param sampleRate
      * @param hzStart
      * @param hzWindowSize
      * @throws IllegalArgumentException
-     * @throws IOException 
+     * @throws IOException
      */
     public static void drawFullCepstrum(Window parent, double[] signal, int sampleRate, int hzStart, int hzWindowSize) throws IllegalArgumentException, IOException {
         // create temp samples array
         double[] tmpSignal = new double[signal.length];
-        
+
         // copy signal
         System.arraycopy(signal, 0, tmpSignal, 0, signal.length);
-        
+
         // apply window on temp signal
         SoundWindowUtil.applyHammingWindow(tmpSignal);
 
@@ -201,14 +201,14 @@ public class PlotUtil {
 
             x[i] = percent * size;
         }
-        
+
         // plot
         Plot2DPanel plot = new Plot2DPanel();
 //        plot.setLegendOrientation("EAST");
 //        plot.addLegend("Cepstrum");
         plot.addLinePlot("Cepstrum", x, y);
         plot.setAxisLabel(0, "Quefrency [s]");
-        plot.setAxisLabel(1, "Amplituda");
+        plot.setAxisLabel(1, "Amplitude");
 
         // window
         JDialog window = new JDialog(parent, "Cepstrum");
@@ -221,7 +221,7 @@ public class PlotUtil {
 
     /**
      * drawFundamentalFrequencyVector
-     * 
+     *
      * @param parent
      * @param fundamentalFrequencyVector
      */
@@ -237,13 +237,13 @@ public class PlotUtil {
         // plot
         Plot2DPanel plot = new Plot2DPanel();
 //        plot.setLegendOrientation("EAST");
-//        plot.addLegend("Ton Podstawowy");
-        plot.addLinePlot("Ton Podstawowy", x, y);
-        plot.setAxisLabel(0, "Nr okna");
-        plot.setAxisLabel(1, "Częstotliwość [Hz]");
+//        plot.addLegend("Fundamental tone");
+        plot.addLinePlot("Fundamental tone", x, y);
+        plot.setAxisLabel(0, "Window number");
+        plot.setAxisLabel(1, "Frequency [Hz]");
 
         // window
-        JDialog window = new JDialog(parent, "Ton Podstawowy");
+        JDialog window = new JDialog(parent, "Fundamental tone");
         window.setSize(600, 600);
         window.setContentPane(plot);
         window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -253,9 +253,9 @@ public class PlotUtil {
 
     /**
      * drawF0NormalDistribution
-     * 
+     *
      * @param parent
-     * @param instance 
+     * @param instance
      */
     public static void drawF0NormalDistribution(Window parent, VoiceStressInstance instance) {
         // create gaussian function
@@ -263,10 +263,10 @@ public class PlotUtil {
 
         // number of values
         int numValues = Config.plotNumValues;
-        
+
         // create x array
         double[] x = new double[numValues];
-        
+
         // calculate x values
         for(int i = 0; i < numValues; i++) {
             x[i] = (((double)i / (double)numValues) * Config.plotXMax);
@@ -283,13 +283,13 @@ public class PlotUtil {
         // plot
         Plot2DPanel plot = new Plot2DPanel();
 //        plot.setLegendOrientation("EAST");
-//        plot.addLegend("Rozkład normanlny tonu fundamentalnego");
-        plot.addLinePlot("Rozkład normanlny tonu fundamentalnego", x, y);
-        plot.setAxisLabel(0, "Częstotliwość [Hz]");
-        plot.setAxisLabel(1, "Rozkład");
+//        plot.addLegend("Normal distribution of fundamental tone");
+        plot.addLinePlot("Normal distribution of fundamental tone", x, y);
+        plot.setAxisLabel(0, "Frequency [Hz]");
+        plot.setAxisLabel(1, "Distribution");
 
         // window
-        JDialog window = new JDialog(parent, "Ton Podstawowy");
+        JDialog window = new JDialog(parent, "Fundamental tone");
         window.setSize(600, 600);
         window.setContentPane(plot);
         window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -299,7 +299,7 @@ public class PlotUtil {
 
     /**
      * drawNormalDistribution
-     * 
+     *
      * @param parent
      * @param mean
      * @param std
@@ -310,10 +310,10 @@ public class PlotUtil {
 
         // number of values
         int numValues = Config.plotNumValues;
-        
+
         // create x array
         double[] x = new double[numValues];
-        
+
         // calculate x values
         for(int i = 0; i < numValues; i++) {
             x[i] = (((double)i / (double)numValues) * Config.plotXMax);
@@ -330,13 +330,13 @@ public class PlotUtil {
         // plot
         Plot2DPanel plot = new Plot2DPanel();
 //        plot.setLegendOrientation("EAST");
-//        plot.addLegend("Rozkład normanlny tonu fundamentalnego");
-        plot.addLinePlot("Rozkład normanlny", x, y);
-        plot.setAxisLabel(0, "Częstotliwość [Hz]");
-        plot.setAxisLabel(1, "Rozkład");
+//        plot.addLegend("Normal distribution of fundamental tone");
+        plot.addLinePlot("Normal distribution", x, y);
+        plot.setAxisLabel(0, "Frequency [Hz]");
+        plot.setAxisLabel(1, "Distribution");
 
         // window
-        JDialog window = new JDialog(parent, "Rozkład normanlny");
+        JDialog window = new JDialog(parent, "Normal distribution");
         window.setSize(600, 600);
         window.setContentPane(plot);
         window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

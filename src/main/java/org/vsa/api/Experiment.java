@@ -16,112 +16,112 @@ public class Experiment {
      * interrogation
      */
     private final Interrogation interrogation;
-    
+
     /**
      * stressedMean
      */
     private final double stressedMean;
-    
+
     /**
      * stressedMedian
      */
     private final double stressedMedian;
-    
+
     /**
      * stressedMin
      */
     private final double stressedMin;
-    
+
     /**
      * stressedMax
      */
     private final double stressedMax;
-    
+
     /**
      * stressedStd
      */
     private final double stressedStd;
-    
+
     /**
      * stressedLowQuantile
      */
     private final double stressedLowQuantile;
-    
+
     /**
      * stressedHighQuantile
      */
     private final double stressedHighQuantile;
-    
+
     /**
      * stressedIqr
      */
     private final double stressedIqr;
-    
+
     /**
      * stressedKurtosis
      */
     private final double stressedKurtosis;
-    
+
     /**
      * stressedRange
      */
     private final double stressedRange;
-    
+
     /**
      * unstressedMean
      */
     private final double unstressedMean;
-    
+
     /**
      * unstressedMedian
      */
     private final double unstressedMedian;
-    
+
     /**
      * unstressedMin
      */
     private final double unstressedMin;
-    
+
     /**
      * unstressedMax
      */
     private final double unstressedMax;
-    
+
     /**
      * unstressedStd
      */
     private final double unstressedStd;
-    
+
     /**
      * unstressedLowQuantile
      */
     private final double unstressedLowQuantile;
-    
+
     /**
      * unstressedHighQuantile
      */
     private final double unstressedHighQuantile;
-    
+
     /**
      * unstressedIqr
      */
     private final double unstressedIqr;
-    
+
     /**
      * unstressedKurtosis
      */
     private final double unstressedKurtosis;
-    
+
     /**
      * unstressedRange
      */
     private final double unstressedRange;
-    
+
     /**
      * numStressedInstances
      */
     private final int numStressedInstances;
-    
+
     /**
      * numUntressedInstances
      */
@@ -129,10 +129,10 @@ public class Experiment {
 
     /**
      * Experiment constructor.
-     * @param interrogation 
-     * @throws java.io.IOException 
-     * @throws javax.sound.sampled.UnsupportedAudioFileException 
-     * @throws org.vsa.audio.AudioException 
+     * @param interrogation
+     * @throws java.io.IOException
+     * @throws javax.sound.sampled.UnsupportedAudioFileException
+     * @throws org.vsa.audio.AudioException
      */
     public Experiment(Interrogation interrogation) throws IOException, UnsupportedAudioFileException, AudioException {
         this.interrogation = interrogation;
@@ -195,12 +195,12 @@ public class Experiment {
 
     /**
      * getStressedSummaryString
-     * 
-     * @return 
+     *
+     * @return
      */
     public String getStressedSummaryString() {
         return this.getInterrogation().toSummaryString() + "\n" +
-            "Liczba nagrań zestresowanych: " + numStressedInstances + "\n" +
+            "Stressed instances count: " + numStressedInstances + "\n" +
             "\n--- Stressed instances evaluation --\n" +
             "Mean: " + String.format("%.2f", getStressedMean()) + " \n" +
             "Median: " + String.format("%.2f", getStressedMedian()) + " \n" +
@@ -216,12 +216,12 @@ public class Experiment {
 
     /**
      * getUnstressedSummaryString
-     * 
-     * @return 
+     *
+     * @return
      */
     public String getUnstressedSummaryString() {
         return this.getInterrogation().toSummaryString() + "\n" +
-            "Liczba nagrań niezestresowanych: " + numUntressedInstances + "\n" +
+            "Unstressed instances count: " + numUntressedInstances + "\n" +
             "\n--- Unstressed instances evaluation --\n" +
             "Mean: " + String.format("%.2f", getUnstressedMean()) + " \n" +
             "Median: " + String.format("%.2f", getUnstressedMedian()) + " \n" +
@@ -236,13 +236,13 @@ public class Experiment {
     }
     /**
      * toSummaryString
-     * 
-     * @return 
+     *
+     * @return
      */
     public String toSummaryString() {
         return this.getInterrogation().toSummaryString() + "\n" +
-            "Liczba nagrań zestresowanych: " + numStressedInstances + "\n" +
-            "Liczba nagrań niezestresowanych: " + numUntressedInstances + "\n" +
+            "Stressed instances count: " + numStressedInstances + "\n" +
+            "Unstressed instances count: " + numUntressedInstances + "\n" +
 
             "\n--- Stressed instances evaluation --\n" +
             "Mean: " + String.format("%.2f", getStressedMean()) + " \n" +

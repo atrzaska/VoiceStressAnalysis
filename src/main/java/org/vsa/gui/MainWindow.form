@@ -6,12 +6,12 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="mnuFile">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Plik"/>
+            <Property name="text" type="java.lang.String" value="File"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="mnuClassifyFile">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Klasyfikuj plik"/>
+                <Property name="text" type="java.lang.String" value="Classify file"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuClassifyFileActionPerformed"/>
@@ -19,7 +19,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuExit">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Wyj&#x15b;cie"/>
+                <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuExitActionPerformed"/>
@@ -29,12 +29,12 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuAction">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Akcja"/>
+            <Property name="text" type="java.lang.String" value="Action"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="mnuSummary">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Podsumowanie"/>
+                <Property name="text" type="java.lang.String" value="Summary"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuSummaryActionPerformed"/>
@@ -42,7 +42,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuDetails">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Sczeg&#xf3;&#x142;y"/>
+                <Property name="text" type="java.lang.String" value="Details"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuDetailsActionPerformed"/>
@@ -50,7 +50,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuClassify">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Klasyfikuj"/>
+                <Property name="text" type="java.lang.String" value="Classify"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuClassifyActionPerformed"/>
@@ -58,7 +58,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuGenerateArff">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Generuj Arff"/>
+                <Property name="text" type="java.lang.String" value="Generage Weka Arff file"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuGenerateArffActionPerformed"/>
@@ -66,7 +66,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="generateModel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Generuj model"/>
+                <Property name="text" type="java.lang.String" value="Generage Weka model"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generateModelActionPerformed"/>
@@ -76,12 +76,12 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Opcje"/>
+            <Property name="text" type="java.lang.String" value="Options"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="MenuOpcjeWeka">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Opcje"/>
+                <Property name="text" type="java.lang.String" value="Options"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuOpcjeWekaActionPerformed"/>
@@ -91,12 +91,12 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Eksperyment"/>
+            <Property name="text" type="java.lang.String" value="Experiment"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="mnuStressedExperimentSummary">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Poka&#x17c; wyniki analizy"/>
+                <Property name="text" type="java.lang.String" value="Show analysis results"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuStressedExperimentSummaryActionPerformed"/>
@@ -104,7 +104,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuDrawStressedDistribution">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Rozk&#x142;ad normalny g&#x142;osu zestresowanego"/>
+                <Property name="text" type="java.lang.String" value="Normal distribution of stressed voice"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuDrawStressedDistributionActionPerformed"/>
@@ -112,7 +112,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuDrawUnstressedDistribution">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Rozk&#x142;ad normalny g&#x142;osu niezestresowanego"/>
+                <Property name="text" type="java.lang.String" value="Normal distribution of unstressed voice"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuDrawUnstressedDistributionActionPerformed"/>
@@ -168,7 +168,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Przes&#x142;uchania"/>
+            <TitledBorder title="Interrogations"/>
           </Border>
         </Property>
       </Properties>

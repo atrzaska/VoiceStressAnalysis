@@ -23,7 +23,7 @@ public class InterrogationWindow extends JDialog {
 
     /**
      * Creates new form InterrogationWindow
-     * 
+     *
      * @param parent
      * @throws java.io.IOException
      * @throws javax.sound.sampled.UnsupportedAudioFileException
@@ -32,13 +32,13 @@ public class InterrogationWindow extends JDialog {
     public InterrogationWindow(MainWindow parent) throws IOException, UnsupportedAudioFileException, AudioException {
         // init
         initComponents();
-        
+
         // set size
         this.setSize(400, 400);
-        
+
         // center on parent
         this.setLocationRelativeTo(parent);
-        
+
         // get interrogation
         Interrogation interrogation = parent.getSelectedInterrogation();
 
@@ -49,8 +49,8 @@ public class InterrogationWindow extends JDialog {
 
     /**
      * getSelectedInstance
-     * 
-     * @return 
+     *
+     * @return
      */
     public VoiceStressInstance getSelectedInstance() {
         return (VoiceStressInstance)lbRecordings.getSelectedValue();
@@ -89,9 +89,9 @@ public class InterrogationWindow extends JDialog {
         jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Szczegóły");
+        setTitle("Details");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Odpowiedzi")));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Answers")));
 
         lbRecordings.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(lbRecordings);
@@ -107,9 +107,9 @@ public class InterrogationWindow extends JDialog {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
         );
 
-        jMenu4.setText("Akcja");
+        jMenu4.setText("Action");
 
-        mnuShowWaveform.setText("Pokaż nagranie");
+        mnuShowWaveform.setText("Show recording");
         mnuShowWaveform.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuShowWaveformActionPerformed(evt);
@@ -117,7 +117,7 @@ public class InterrogationWindow extends JDialog {
         });
         jMenu4.add(mnuShowWaveform);
 
-        mnuShowSpectrum.setText("Pokaż spektrum");
+        mnuShowSpectrum.setText("Show spectrum");
         mnuShowSpectrum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuShowSpectrumActionPerformed(evt);
@@ -125,7 +125,7 @@ public class InterrogationWindow extends JDialog {
         });
         jMenu4.add(mnuShowSpectrum);
 
-        mnuShowCepstrum.setText("Pokaż cepstrum");
+        mnuShowCepstrum.setText("Show cepstrum");
         mnuShowCepstrum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuShowCepstrumActionPerformed(evt);
@@ -133,7 +133,7 @@ public class InterrogationWindow extends JDialog {
         });
         jMenu4.add(mnuShowCepstrum);
 
-        mnuShowF0.setText("Pokaż ton fundamentalny");
+        mnuShowF0.setText("Show fundamental tone");
         mnuShowF0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuShowF0ActionPerformed(evt);
@@ -141,7 +141,7 @@ public class InterrogationWindow extends JDialog {
         });
         jMenu4.add(mnuShowF0);
 
-        mnuShowDistribution.setText("Pokaż rozkład tonu fundamentalnego");
+        mnuShowDistribution.setText("Show fundamental tone distribution");
         mnuShowDistribution.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuShowDistributionActionPerformed(evt);
@@ -149,7 +149,7 @@ public class InterrogationWindow extends JDialog {
         });
         jMenu4.add(mnuShowDistribution);
 
-        mnuDetails.setText("Szczegóły");
+        mnuDetails.setText("Details");
         mnuDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuDetailsActionPerformed(evt);
@@ -159,9 +159,9 @@ public class InterrogationWindow extends JDialog {
 
         jMenuBar2.add(jMenu4);
 
-        mnuPomoce.setText("Pomoce");
+        mnuPomoce.setText("Help");
 
-        mnuShowFullCepstrum.setText("Pokaż pełne cepstrum");
+        mnuShowFullCepstrum.setText("Show full cepstrum");
         mnuShowFullCepstrum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuShowFullCepstrumActionPerformed(evt);

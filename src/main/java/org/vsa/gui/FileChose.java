@@ -27,7 +27,7 @@ public class FileChose extends javax.swing.JDialog {
 
     /**
      * Creates new form FileChose
-     * 
+     *
      * @param parent
      */
     public FileChose(Component parent) {
@@ -54,9 +54,9 @@ public class FileChose extends javax.swing.JDialog {
         CancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Klasyfikacja nagrania");
+        setTitle("Recording classification");
 
-        ModelButton.setText("Wybierz");
+        ModelButton.setText("Select");
         ModelButton.setToolTipText("");
         ModelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,16 +64,16 @@ public class FileChose extends javax.swing.JDialog {
             }
         });
 
-        FileButton.setText("Wybierz");
+        FileButton.setText("Select");
         FileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FileButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Model:");
+        jLabel1.setText("Model file:");
 
-        jLabel2.setText("Plik:");
+        jLabel2.setText("Sound file:");
 
         ModelLabel.setText("none");
 
@@ -86,7 +86,7 @@ public class FileChose extends javax.swing.JDialog {
             }
         });
 
-        CancelButton.setText("Zamknij");
+        CancelButton.setText("Close");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CancelButtonActionPerformed(evt);
@@ -170,7 +170,7 @@ public class FileChose extends javax.swing.JDialog {
 
         if (result1 == JFileChooser.APPROVE_OPTION && result2 == JFileChooser.APPROVE_OPTION) {
             VoiceStressInstanceList vsilist = new VoiceStressInstanceList();
-            vsilist.setName("nazwa");
+            vsilist.setName("name");
 
             try {
                 VoiceStressInstance vsi = VoiceStressInstance.fromSoundFile(fcf.getSelectedFile().getAbsolutePath());
@@ -180,19 +180,19 @@ public class FileChose extends javax.swing.JDialog {
                 DataSet data = new DataSet();
                 Classifier clsa = data.loadModel(fcm.getSelectedFile().getAbsolutePath());
                 //System.out.println(inst.toString());
-                
+
                 double wynik = cls.classifyNewFromFile(clsa, inst);
 
                 if(wynik == 0.0){
-                    JOptionPane.showMessageDialog(rootPane, "Wykryto stres w głosie");
+                    JOptionPane.showMessageDialog(rootPane, "Stress detected in voice");
                 } else if (wynik == 1.0){
-                    JOptionPane.showMessageDialog(rootPane, "Brak strsu w głosie");
+                    JOptionPane.showMessageDialog(rootPane, "No stress in voice");
                 }
             } catch (Exception ex) {
                 System.out.println(ex);
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Wybierz model oraz nagranie");
+            JOptionPane.showMessageDialog(rootPane, "Please select model and recording");
         }
 
 

@@ -32,7 +32,7 @@ public class Interrogation {
 
     /**
      * getName
-     * 
+     *
      * @return the name
      */
     public String getName() {
@@ -41,7 +41,7 @@ public class Interrogation {
 
     /**
      * setName
-     * 
+     *
      * @param name
      */
     public void setName(String name) {
@@ -50,8 +50,8 @@ public class Interrogation {
 
     /**
      * numFiles
-     * 
-     * @return 
+     *
+     * @return
      */
     public int numFiles() {
         return files.size();
@@ -59,7 +59,7 @@ public class Interrogation {
 
     /**
      * getFiles
-     * 
+     *
      * @return the files
      */
     public List<String> getFiles() {
@@ -68,8 +68,8 @@ public class Interrogation {
 
     /**
      * Default constructor.
-     * 
-     * @param name 
+     *
+     * @param name
      */
     public Interrogation(String name) {
         // set name
@@ -83,11 +83,11 @@ public class Interrogation {
 
     /**
      * processFiles
-     * 
-     * @return 
-     * @throws java.io.IOException 
-     * @throws javax.sound.sampled.UnsupportedAudioFileException 
-     * @throws org.vsa.audio.AudioException 
+     *
+     * @return
+     * @throws java.io.IOException
+     * @throws javax.sound.sampled.UnsupportedAudioFileException
+     * @throws org.vsa.audio.AudioException
      */
     public VoiceStressInstanceList processFiles() throws IOException, UnsupportedAudioFileException, AudioException {
         // create output list
@@ -100,7 +100,7 @@ public class Interrogation {
         for (String file : files) {
             // process sound file
             VoiceStressInstance instance = VoiceStressInstance.fromSoundFile(file);
-            
+
             // add instance to array
             instanceList.addInstance(instance);
         }
@@ -127,7 +127,7 @@ public class Interrogation {
     }
     /**
      * toWekaInstances
-     * 
+     *
      * @return
      * @throws IOException
      * @throws UnsupportedAudioFileException
@@ -143,7 +143,7 @@ public class Interrogation {
 
     /**
      * generateArff
-     * 
+     *
      * @param outputPath
      * @throws IOException
      * @throws UnsupportedAudioFileException
@@ -156,18 +156,18 @@ public class Interrogation {
 
     /**
      * toSummaryString
-     * 
-     * @return 
+     *
+     * @return
      */
     public String toSummaryString() {
-        return "Nazwa przesłuchania: " + this.getName() + "\n" +
-                "Liczba plików dźwiękowych: " + this.numFiles();
+        return "Interrogation name: " + this.getName() + "\n" +
+                "Number of sound files: " + this.numFiles();
     }
 
     /**
      * toString
-     * 
-     * @return 
+     *
+     * @return
      */
     @Override
     public String toString() {
@@ -176,7 +176,7 @@ public class Interrogation {
 
     /**
      * getInstanceList
-     * 
+     *
      * @return the instanceList
      * @throws java.io.IOException
      * @throws javax.sound.sampled.UnsupportedAudioFileException

@@ -14,7 +14,7 @@ public class NewInterrogationWindow extends javax.swing.JDialog {
 
     /**
      * Creates new form NewInterrogationWindow
-     * 
+     *
      * @param mainWindow
      */
     public NewInterrogationWindow(MainWindow mainWindow) {
@@ -37,7 +37,7 @@ public class NewInterrogationWindow extends javax.swing.JDialog {
 
         jButton1.setText("OK");
 
-        jLabel1.setText("Nazwa przesłuchania");
+        jLabel1.setText("Interrogation name");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

@@ -47,11 +47,11 @@ public class MainWindow extends JFrame {
     public VsaSystem getVsaSystem() {
         return vsaSystem;
     }
-    
+
     /**
      * getSelectedInterrogation
-     * 
-     * @return 
+     *
+     * @return
      */
     public Interrogation getSelectedInterrogation() {
         // get interrogation from list
@@ -60,7 +60,7 @@ public class MainWindow extends JFrame {
         // return value
         return interrogation;
     }
-    
+
     public List<Object> getSelectedInterrogations() {
         return lbInterrogations.getSelectedValuesList();
    }
@@ -97,7 +97,7 @@ public class MainWindow extends JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VSA");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Przesłuchania"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Interrogation"));
 
         jScrollPane1.setViewportView(lbInterrogations);
 
@@ -114,9 +114,9 @@ public class MainWindow extends JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        mnuFile.setText("Plik");
+        mnuFile.setText("File");
 
-        mnuClassifyFile.setText("Klasyfikuj plik");
+        mnuClassifyFile.setText("Classify file");
         mnuClassifyFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuClassifyFileActionPerformed(evt);
@@ -124,7 +124,7 @@ public class MainWindow extends JFrame {
         });
         mnuFile.add(mnuClassifyFile);
 
-        mnuExit.setText("Wyjście");
+        mnuExit.setText("Exit");
         mnuExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuExitActionPerformed(evt);
@@ -134,9 +134,9 @@ public class MainWindow extends JFrame {
 
         jMenuBar1.add(mnuFile);
 
-        mnuAction.setText("Akcja");
+        mnuAction.setText("Action");
 
-        mnuSummary.setText("Podsumowanie");
+        mnuSummary.setText("Summary");
         mnuSummary.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuSummaryActionPerformed(evt);
@@ -144,7 +144,7 @@ public class MainWindow extends JFrame {
         });
         mnuAction.add(mnuSummary);
 
-        mnuDetails.setText("Sczegóły");
+        mnuDetails.setText("Details");
         mnuDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuDetailsActionPerformed(evt);
@@ -152,7 +152,7 @@ public class MainWindow extends JFrame {
         });
         mnuAction.add(mnuDetails);
 
-        mnuClassify.setText("Klasyfikuj");
+        mnuClassify.setText("Classify instance");
         mnuClassify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuClassifyActionPerformed(evt);
@@ -160,7 +160,7 @@ public class MainWindow extends JFrame {
         });
         mnuAction.add(mnuClassify);
 
-        mnuGenerateArff.setText("Generuj Arff");
+        mnuGenerateArff.setText("Generate Weka Arff file");
         mnuGenerateArff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuGenerateArffActionPerformed(evt);
@@ -168,7 +168,7 @@ public class MainWindow extends JFrame {
         });
         mnuAction.add(mnuGenerateArff);
 
-        generateModel.setText("Generuj model");
+        generateModel.setText("Generate Weka model");
         generateModel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 generateModelActionPerformed(evt);
@@ -178,9 +178,9 @@ public class MainWindow extends JFrame {
 
         jMenuBar1.add(mnuAction);
 
-        jMenu1.setText("Opcje");
+        jMenu1.setText("Options");
 
-        MenuOpcjeWeka.setText("Opcje");
+        MenuOpcjeWeka.setText("Options");
         MenuOpcjeWeka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MenuOpcjeWekaActionPerformed(evt);
@@ -190,9 +190,9 @@ public class MainWindow extends JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Eksperyment");
+        jMenu2.setText("Experiment");
 
-        mnuStressedExperimentSummary.setText("Pokaż wyniki analizy");
+        mnuStressedExperimentSummary.setText("Show analysis results");
         mnuStressedExperimentSummary.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuStressedExperimentSummaryActionPerformed(evt);
@@ -200,7 +200,7 @@ public class MainWindow extends JFrame {
         });
         jMenu2.add(mnuStressedExperimentSummary);
 
-        mnuDrawStressedDistribution.setText("Rozkład normalny głosu zestresowanego");
+        mnuDrawStressedDistribution.setText("Normal distribution of stressed voice");
         mnuDrawStressedDistribution.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuDrawStressedDistributionActionPerformed(evt);
@@ -208,7 +208,7 @@ public class MainWindow extends JFrame {
         });
         jMenu2.add(mnuDrawStressedDistribution);
 
-        mnuDrawUnstressedDistribution.setText("Rozkład normalny głosu niezestresowanego");
+        mnuDrawUnstressedDistribution.setText("Normal distribution of unstressed voice");
         mnuDrawUnstressedDistribution.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuDrawUnstressedDistributionActionPerformed(evt);

@@ -14,15 +14,15 @@ public class SummaryWindow extends javax.swing.JDialog {
     public SummaryWindow(Component parent) {
         // init
         initComponents();
-        
+
         // set position
         this.setLocationRelativeTo(parent);
     }
-    
+
     /**
      * setTextSummary
-     * 
-     * @param text 
+     *
+     * @param text
      */
     public void setTextSummary(String text) {
         this.txtSummary.setText(text);
@@ -42,7 +42,7 @@ public class SummaryWindow extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Podsumowanie");
+        setTitle("Summary");
 
         txtSummary.setColumns(20);
         txtSummary.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N

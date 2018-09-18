@@ -16,15 +16,15 @@ public class Main {
 
     /**
      * main
-     * 
-     * @param args 
+     *
+     * @param args
      */
     public static void main(String[] args) {
         // log
         logger.log(Level.INFO, "start");
-        
+
         // log
-        logger.log(Level.INFO, "tworze gui");
+        logger.log(Level.INFO, "creating GUI");
 
         // set look and feel
         try {
@@ -41,6 +41,6 @@ public class Main {
         });
 
         // log
-        logger.log(Level.INFO, "koniec");
+        logger.log(Level.INFO, "done");
     }
 }

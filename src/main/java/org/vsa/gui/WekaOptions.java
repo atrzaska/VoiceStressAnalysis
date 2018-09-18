@@ -11,7 +11,7 @@ public class WekaOptions extends JDialog {
 
     /**
      * Creates new form WekaOptions
-     * 
+     *
      * @param parent
      */
     public WekaOptions(Container parent) {
@@ -39,11 +39,11 @@ public class WekaOptions extends JDialog {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Opcje");
+        setTitle("Options");
 
         ComboBoxAlgorytmy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "J48", "Naive Bayes", "Lazy IBk", "Random Tree", "SMO", "PART", "Decision Table", "Multi Layer", "Kstar" }));
 
-        CheckBoxFiltry.setText("uzyj filtru danych");
+        CheckBoxFiltry.setText("use data filter");
         CheckBoxFiltry.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 comboboxFiltryitemchange(evt);
@@ -53,23 +53,23 @@ public class WekaOptions extends JDialog {
         ComboBoxFiltry.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CSF greedy", "CSF best first", "Filtered CSF greedy", "Filtered CSF best first", "Consistency greedy", "Consistency best first" }));
         ComboBoxFiltry.setEnabled(false);
 
-        ButtonAkcpet.setText("Akceptuj");
+        ButtonAkcpet.setText("Accept");
         ButtonAkcpet.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ButtonAkcpetMouseClicked(evt);
             }
         });
 
-        ButtonCancel.setText("Anuluj");
+        ButtonCancel.setText("Cancel");
         ButtonCancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ButtonCancelMouseClicked(evt);
             }
         });
 
-        jLabel1.setText("Alogrytm:");
+        jLabel1.setText("Algorithm:");
 
-        jLabel2.setText("Filtry:");
+        jLabel2.setText("Filters:");
 
         TextFiledFolds.setText("10");
 
@@ -128,7 +128,7 @@ public class WekaOptions extends JDialog {
 
     private void ButtonAkcpetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonAkcpetMouseClicked
         WekaConfig wekaConfig = WekaConfig.getInstance();
-        
+
         wekaConfig.setFilter(ComboBoxFiltry.getSelectedItem().toString());
         wekaConfig.setFilterBool(CheckBoxFiltry.isSelected());
         wekaConfig.setAlgorithm(ComboBoxAlgorytmy.getSelectedItem().toString());
