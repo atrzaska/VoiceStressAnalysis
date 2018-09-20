@@ -36,3 +36,7 @@ To start the application please run the following command:
 
     java -jar bin/vsa-1.0.jar
 
+## Limitations
+
+- Please use mono WAV files 44100 Hz only
+
